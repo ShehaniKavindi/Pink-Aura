@@ -3,415 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PiNK AURA — Reveal your natural glow</title>
+<title>Sign in — PiNK AURA</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  /* ============ DESIGN TOKENS — locked, do not change ============ */
-  :root{
-    --font-display: 'Fraunces', serif;
-    --font-body: 'Work Sans', sans-serif;
-
-    --color-primary:        #F4B9CE;
-    --color-primary-strong: #E58EAD;
-    --color-secondary:      #FBE7EE;
-    --color-tertiary:       #F3D6E2;
-    --color-background:     #FFFDFC;
-    --color-surface:        #FFFFFF;
-
-    --color-text-primary:   #2B1E24;
-    --color-text-secondary: #8C7580;
-    --color-text-on-primary:#4A1E30;
-
-    /* -- layout helpers, not brand tokens -- */
-    --radius-card: 16px;
-    --radius-pill: 999px;
-  }
-
-  *{box-sizing:border-box;}
-  body{
-    margin:0;
-    background:var(--color-background);
-    color:var(--color-text-primary);
-    font-family:var(--font-body);
-    -webkit-font-smoothing:antialiased;
-  }
-  img{display:block;max-width:100%;}
-  a{color:inherit;}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
-  section{padding:64px 0;}
-  .eyebrow{
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--color-primary-strong);
-    font-weight:500;
-    margin:0 0 14px;
-  }
-  .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:var(--font-body);font-size:14px;font-weight:500;
-    padding:13px 26px;border-radius:var(--radius-pill);
-    border:1px solid var(--color-text-primary);
-    background:var(--color-text-primary);color:#fff;
-    cursor:pointer;text-decoration:none;
-  }
-  .btn.outline{
-    background:transparent;color:var(--color-text-primary);
-    border:1px solid var(--color-tertiary);
-  }
-
-  /* ---------- NAV ---------- */
-  nav.top{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:22px 40px;border-bottom:1px solid var(--color-tertiary);
-  }
-  .logo{font-family:var(--font-display);font-size:22px;}
-  .logo span{color:var(--color-primary-strong);}
-  .nav-links{display:flex;gap:32px;font-size:14px;}
-  .nav-links a{text-decoration:none;padding-bottom:4px;}
-  .nav-links a.active{border-bottom:2px solid var(--color-primary-strong);}
-  .nav-icons{display:flex;align-items:center;gap:20px;}
-  .icon-btn{
-    width:34px;height:34px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    border:1px solid var(--color-tertiary);font-size:14px;position:relative;
-  }
-  .cart-count{
-    position:absolute;top:-4px;right:-4px;
-    background:var(--color-text-primary);color:#fff;
-    font-size:9px;width:16px;height:16px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-  }
-
-  /* ---------- HERO ---------- */
-  .hero{
-    background:linear-gradient(120deg, var(--color-secondary) 0%, var(--color-tertiary) 100%);
-    padding:0;
-  }
-  .hero .wrap{
-    display:grid;grid-template-columns:1fr 1fr;
-    align-items:center;gap:40px;
-    padding-top:56px;padding-bottom:0;
-  }
-  .hero-copy h1{
-    font-family:var(--font-display);font-weight:600;
-    font-size:clamp(36px, 4.5vw, 54px);line-height:1.1;margin:0 0 18px;
-  }
-  .hero-copy h1 em{font-style:italic;color:var(--color-primary-strong);}
-  .hero-copy p{font-size:15px;color:var(--color-text-secondary);max-width:380px;margin:0 0 28px;line-height:1.6;}
-  .hero-actions{display:flex;align-items:center;gap:20px;margin-bottom:40px;}
-  .watch{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;cursor:pointer;}
-  .watch .play{
-    width:34px;height:34px;border-radius:50%;background:var(--color-surface);
-    display:flex;align-items:center;justify-content:center;font-size:11px;
-    box-shadow:0 2px 8px rgba(43,30,36,0.12);
-  }
-  .trust-row{display:flex;gap:36px;flex-wrap:wrap;}
-  .trust-item{display:flex;align-items:center;gap:10px;}
-  .trust-item .dot{
-    width:32px;height:32px;border-radius:50%;border:1px solid var(--color-primary-strong);
-    display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--color-primary-strong);
-    flex-shrink:0;
-  }
-  .trust-item .label{font-size:12px;font-weight:500;}
-  .trust-item .sub{font-size:11px;color:var(--color-text-secondary);}
-
-  .hero-image{position:relative;}
-  .hero-image img{
-    border-radius:var(--radius-card);
-    width:100%;height:520px;object-fit:cover;
-  }
-  .hero-badge{
-    position:absolute;top:24px;right:-14px;
-    background:var(--color-surface);
-    border-radius:50%;width:104px;height:104px;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    text-align:center;box-shadow:0 8px 24px rgba(43,30,36,0.14);
-  }
-  .hero-badge .pct{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--color-primary-strong);}
-  .hero-badge .txt{font-size:10px;color:var(--color-text-secondary);line-height:1.3;}
-
-  /* ---------- CATEGORIES ---------- */
-  .section-title{
-    font-family:var(--font-display);font-weight:500;
-    font-size:28px;text-align:center;margin:0 0 40px;
-  }
-  .cat-grid{
-    display:grid;grid-template-columns:repeat(5, 1fr);gap:16px;
-  }
-  .cat-card{
-    background:var(--color-secondary);
-    border-radius:var(--radius-card);
-    overflow:hidden;
-    text-align:center;
-    transition:transform .15s ease;
-  }
-  .cat-card:hover{transform:translateY(-4px);}
-  .cat-card img{width:100%;height:150px;object-fit:cover;}
-  .cat-card .cat-body{padding:16px 8px 20px;}
-  .cat-card .cat-name{font-family:var(--font-display);font-size:16px;margin:0 0 4px;}
-  .cat-card .cat-count{font-size:12px;color:var(--color-text-secondary);}
-
-  /* ---------- PROMO BANNER ---------- */
-  .promo{
-    background:linear-gradient(100deg, var(--color-tertiary), var(--color-secondary));
-    border-radius:var(--radius-card);
-    padding:48px;
-    display:grid;grid-template-columns:1fr 1fr 220px;
-    align-items:center;gap:32px;
-  }
-  .promo-copy .eyebrow{display:flex;align-items:center;gap:6px;}
-  .promo-copy h2{
-    font-family:var(--font-display);font-weight:600;
-    font-size:32px;line-height:1.15;margin:0 0 14px;
-  }
-  .promo-copy h2 em{font-style:italic;color:var(--color-primary-strong);}
-  .promo-copy p{font-size:14px;color:var(--color-text-secondary);margin:0 0 24px;line-height:1.6;}
-  .promo-image img{border-radius:var(--radius-card);width:100%;height:260px;object-fit:cover;}
-  .promo-stats{text-align:center;border-left:1px solid rgba(43,30,36,0.1);padding-left:32px;}
-  .promo-stats .stat{margin-bottom:22px;}
-  .promo-stats .num{font-family:var(--font-display);font-size:26px;font-weight:600;color:var(--color-primary-strong);}
-  .promo-stats .lab{font-size:12px;color:var(--color-text-secondary);}
-  .promo-stats .stars{color:var(--color-primary-strong);font-size:14px;letter-spacing:2px;}
-
-  /* ---------- BESTSELLERS ---------- */
-  .bestsellers-head{
-    display:flex;align-items:baseline;justify-content:space-between;margin-bottom:32px;
-  }
-  .bestsellers-head h2{font-family:var(--font-display);font-weight:500;font-size:26px;margin:0;}
-  .view-all{
-    font-size:13px;font-weight:500;padding:10px 22px;border-radius:var(--radius-pill);
-    border:1px solid var(--color-tertiary);text-decoration:none;
-  }
-  .prod-grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:20px;}
-  .prod-card{
-    background:var(--color-surface);
-    border:1px solid var(--color-tertiary);
-    border-radius:var(--radius-card);
-    overflow:hidden;
-  }
-  .prod-image{position:relative;background:var(--color-secondary);}
-  .prod-image img{width:100%;height:210px;object-fit:cover;}
-  .wishlist{
-    position:absolute;top:12px;right:12px;
-    width:32px;height:32px;border-radius:50%;background:var(--color-surface);
-    display:flex;align-items:center;justify-content:center;font-size:13px;
-    box-shadow:0 2px 8px rgba(43,30,36,0.12);
-  }
-  .prod-body{padding:16px 18px 20px;}
-  .prod-name{font-family:var(--font-display);font-size:16px;margin:0 0 6px;}
-  .prod-rating{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--color-text-secondary);margin-bottom:10px;}
-  .prod-rating .stars{color:var(--color-primary-strong);}
-  .prod-price-row{display:flex;align-items:center;justify-content:space-between;}
-  .prod-price{font-size:15px;font-weight:600;}
-  .prod-price .old{
-    font-size:12px;color:var(--color-text-secondary);
-    text-decoration:line-through;font-weight:400;margin-left:6px;
-  }
-  .prod-cart{
-    width:32px;height:32px;border-radius:50%;background:var(--color-secondary);
-    display:flex;align-items:center;justify-content:center;font-size:13px;border:none;cursor:pointer;
-  }
-
-  /* ---------- FOOTER ---------- */
-  footer{
-    border-top:1px solid var(--color-tertiary);
-    padding:40px 0;text-align:center;
-    font-size:12px;color:var(--color-text-secondary);
-  }
-  footer .logo{margin-bottom:8px;}
-
-  @media (max-width:900px){
-    .hero .wrap{grid-template-columns:1fr;padding-top:36px;}
-    .hero-image img{height:360px;}
-    .cat-grid{grid-template-columns:repeat(2,1fr);}
-    .promo{grid-template-columns:1fr;text-align:center;}
-    .promo-stats{border-left:none;padding-left:0;display:flex;justify-content:center;gap:32px;}
-    .prod-grid{grid-template-columns:repeat(2,1fr);}
-    .nav-links{display:none;}
-    .wrap{padding:0 20px;}
-  }
-</style>
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="test.css">
 </head>
 <body>
 
-<nav class="top">
-  <div class="logo">PiNK <span>AURA</span></div>
-  <div class="nav-links">
-    <a href="#" class="active">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">Categories</a>
-    <a href="#">About us</a>
-    <a href="#">Blog</a>
-    <a href="#">Contact</a>
-  </div>
-  <div class="nav-icons">
-    <div class="icon-btn">&#9906;</div>
-    <div class="icon-btn">&#128100;</div>
-    <div class="icon-btn">&#128722;<span class="cart-count">0</span></div>
-  </div>
-</nav>
+<div class="login-page">
+  <img class="login-bg" src="assets/images/site-images/loginBg.jpg" alt="">
+  <div class="login-bg-overlay"></div>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-copy">
-      <p class="eyebrow">New collection</p>
-      <h1>Reveal your<br><em>natural glow</em></h1>
-      <p>Discover skincare that enhances your natural beauty. Gentle, effective, and made for you.</p>
-      <div class="hero-actions">
-        <a href="#" class="btn">Shop now &rarr;</a>
-        <div class="watch"><span class="play">&#9654;</span> Watch video</div>
-      </div>
-      <div class="trust-row">
-        <div class="trust-item">
-          <div class="dot">&#127793;</div>
-          <div><div class="label">Natural ingredients</div><div class="sub">Safe & organic</div></div>
-        </div>
-        <div class="trust-item">
-          <div class="dot">&#10003;</div>
-          <div><div class="label">Dermatologist tested</div><div class="sub">Clinically proven</div></div>
-        </div>
-        <div class="trust-item">
-          <div class="dot">&#128062;</div>
-          <div><div class="label">Cruelty free</div><div class="sub">Love all animals</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="https://placehold.co/640x680/F3D6E2/4A1E30?text=Model+photo%0Aplaceholder" alt="Model applying skincare — placeholder">
-      <div class="hero-badge">
-        <div class="pct">20% off</div>
-        <div class="txt">For new customers</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <a class="login-logo" href="index.html">PiNK <span>AURA</span></a>
 
-<!-- CATEGORIES -->
-<section>
-  <div class="wrap">
-    <h2 class="section-title">Shop by category</h2>
-    <div class="cat-grid">
-      <div class="cat-card">
-        <img src="https://placehold.co/300x300/FBE7EE/8C7580?text=Cleanser" alt="Cleansers — placeholder">
-        <div class="cat-body"><p class="cat-name">Cleansers</p><p class="cat-count">12 products</p></div>
-      </div>
-      <div class="cat-card">
-        <img src="https://placehold.co/300x300/F4B9CE/4A1E30?text=Moisturizer" alt="Moisturizers — placeholder">
-        <div class="cat-body"><p class="cat-name">Moisturizers</p><p class="cat-count">18 products</p></div>
-      </div>
-      <div class="cat-card">
-        <img src="https://placehold.co/300x300/F3D6E2/4A1E30?text=Serum" alt="Serums — placeholder">
-        <div class="cat-body"><p class="cat-name">Serums</p><p class="cat-count">15 products</p></div>
-      </div>
-      <div class="cat-card">
-        <img src="https://placehold.co/300x300/FBE7EE/8C7580?text=Sunscreen" alt="Sunscreen — placeholder">
-        <div class="cat-body"><p class="cat-name">Sunscreen</p><p class="cat-count">10 products</p></div>
-      </div>
-      <div class="cat-card">
-        <img src="https://placehold.co/300x300/E58EAD/FFFFFF?text=Mask" alt="Masks — placeholder">
-        <div class="cat-body"><p class="cat-name">Masks</p><p class="cat-count">8 products</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="login-card">
+    <p class="eyebrow">Welcome back</p>
+    <h1>Sign in to your account</h1>
+    <p class="login-sub">Glow starts here — access your orders, wishlist, and saved details.</p>
 
-<!-- PROMO BANNER -->
-<section>
-  <div class="wrap">
-    <div class="promo">
-      <div class="promo-copy">
-        <p class="eyebrow">&#10022; Glow every day</p>
-        <h2>Skincare that<br><em>loves</em> you back</h2>
-        <p>Flat 20% off on our best-selling products. Limited time offer.</p>
-        <a href="#" class="btn">Shop now &rarr;</a>
+    <form class="login-form" id="loginForm">
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
       </div>
-      <div class="promo-image">
-        <img src="https://placehold.co/420x420/F4B9CE/4A1E30?text=Product+shot" alt="Product lineup — placeholder">
-      </div>
-      <div class="promo-stats">
-        <div class="stat"><div class="num">10K+</div><div class="lab">Happy customers</div></div>
-        <div class="stat"><div class="num">4.8</div><div class="lab">Average rating</div><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- BESTSELLERS -->
-<section>
-  <div class="wrap">
-    <div class="bestsellers-head">
-      <h2>Our bestsellers</h2>
-      <a href="#" class="view-all">View all</a>
-    </div>
-    <div class="prod-grid">
-      <div class="prod-card">
-        <div class="prod-image">
-          <img src="https://placehold.co/320x300/F3D6E2/4A1E30?text=Vitamin+C+Serum" alt="Vitamin C serum — placeholder">
-          <div class="wishlist">&#9825;</div>
-        </div>
-        <div class="prod-body">
-          <p class="prod-name">Vitamin C serum</p>
-          <div class="prod-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> (128)</div>
-          <div class="prod-price-row">
-            <div class="prod-price">Rs 899<span class="old">Rs 1,199</span></div>
-            <button class="prod-cart">&#128722;</button>
-          </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-field">
+          <input type="password" id="password" name="password" placeholder="••••••••" required>
+          <button type="button" class="password-toggle" id="passwordToggle" aria-label="Show password" aria-pressed="false">
+            <!-- open eye -->
+            <svg class="icon-show" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12Z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <!-- closed eye -->
+            <svg class="icon-hide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 3l18 18"/>
+              <path d="M10.6 10.6a2 2 0 0 0 2.83 2.83"/>
+              <path d="M6.5 6.7C4 8.3 1.5 12 1.5 12s3.5 7 10.5 7c1.9 0 3.5-.5 4.9-1.2"/>
+              <path d="M17.6 17.6C20.3 15.9 22.5 12 22.5 12s-.9-1.8-2.6-3.6"/>
+            </svg>
+          </button>
         </div>
       </div>
-      <div class="prod-card">
-        <div class="prod-image">
-          <img src="https://placehold.co/320x300/F4B9CE/4A1E30?text=Hydrating+Moisturizer" alt="Hydrating moisturizer — placeholder">
-          <div class="wishlist">&#9825;</div>
-        </div>
-        <div class="prod-body">
-          <p class="prod-name">Hydrating moisturizer</p>
-          <div class="prod-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> (96)</div>
-          <div class="prod-price-row">
-            <div class="prod-price">Rs 699<span class="old">Rs 999</span></div>
-            <button class="prod-cart">&#128722;</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-image">
-          <img src="https://placehold.co/320x300/FBE7EE/8C7580?text=Glow+Sunscreen" alt="Glow sunscreen SPF 50 — placeholder">
-          <div class="wishlist">&#9825;</div>
-        </div>
-        <div class="prod-body">
-          <p class="prod-name">Glow sunscreen SPF 50</p>
-          <div class="prod-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> (74)</div>
-          <div class="prod-price-row">
-            <div class="prod-price">Rs 599<span class="old">Rs 799</span></div>
-            <button class="prod-cart">&#128722;</button>
-          </div>
-        </div>
-      </div>
-      <div class="prod-card">
-        <div class="prod-image">
-          <img src="https://placehold.co/320x300/E58EAD/FFFFFF?text=Rose+Clay+Mask" alt="Rose clay mask — placeholder">
-          <div class="wishlist">&#9825;</div>
-        </div>
-        <div class="prod-body">
-          <p class="prod-name">Rose clay mask</p>
-          <div class="prod-rating"><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span> (64)</div>
-          <div class="prod-price-row">
-            <div class="prod-price">Rs 499<span class="old">Rs 699</span></div>
-            <button class="prod-cart">&#128722;</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<footer>
-  <div class="logo">PiNK <span style="color:var(--color-primary-strong);">AURA</span></div>
-  <div>&copy; 2026 PiNK AURA. All product photos are placeholders.</div>
-</footer>
+      <div class="login-row">
+        <label class="checkbox">
+          <input type="checkbox" name="remember">
+          Remember me
+        </label>
+        <a href="#" class="link">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn login-submit">Sign in &rarr;</button>
+    </form>
+
+    <div class="login-divider"><span>or</span></div>
+
+    <button type="button" class="btn outline login-alt">
+      <span class="g-icon">G</span> Continue with Google
+    </button>
+
+    <p class="login-footer-text">New to PiNK AURA? <a href="#">Create an account</a></p>
+  </div>
+</div>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    // TODO: wire up to process/login.php
+    console.log('Login submitted:', {
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value,
+      remember: document.querySelector('input[name="remember"]').checked
+    });
+  });
+
+  // Show/hide password
+  const passwordInput = document.getElementById('password');
+  const passwordToggle = document.getElementById('passwordToggle');
+  passwordToggle.addEventListener('click', () => {
+    const isVisible = passwordInput.type === 'text';
+    passwordInput.type = isVisible ? 'password' : 'text';
+    passwordToggle.classList.toggle('is-visible', !isVisible);
+    passwordToggle.setAttribute('aria-pressed', String(!isVisible));
+    passwordToggle.setAttribute('aria-label', isVisible ? 'Show password' : 'Hide password');
+  });
+</script>
 
 </body>
 </html>
