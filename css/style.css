@@ -1,0 +1,177 @@
+/* ==========================================================================
+   PiNK AURA — style.css
+   Shared, site-wide styles: design tokens + common components
+   (buttons, inputs/search bar, links, header/nav, footer, base typography)
+   Page-specific layout lives in its own file (e.g. home.css, category.css)
+   ========================================================================== */
+
+/* ---------- DESIGN TOKENS (locked — do not change) ---------- */
+:root{
+  --font-display: 'Fraunces', serif;    /* headlines, category names, product names */
+  --font-body: 'Work Sans', sans-serif; /* body copy, labels, UI */
+
+  --color-primary:        #F4B9CE; /* core brand pink */
+  --color-primary-strong: #E58EAD; /* deeper pink, hover/active */
+  --color-secondary:      #FBE7EE; /* pale blush, hover fills */
+  --color-tertiary:       #F3D6E2; /* dusty pink, borders/dividers */
+  --color-background:     #FFFDFC; /* near-white page bg */
+  --color-surface:        #FFFFFF; /* card surfaces */
+
+  --color-text-primary:   #2B1E24;
+  --color-text-secondary: #8C7580;
+  --color-text-on-primary:#4A1E30;
+
+  /* -- layout helpers, not brand colors -- */
+  --radius-card:  16px;
+  --radius-pill:  999px;
+  --radius-input: 10px;
+}
+
+/* ---------- RESET / BASE ---------- */
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--color-background);
+  color:var(--color-text-primary);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+}
+img{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font-family:var(--font-body);}
+
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+section{padding:64px 0;}
+
+/* ---------- TYPOGRAPHY ---------- */
+h1,h2,h3{font-family:var(--font-display);font-weight:500;margin:0;}
+
+.eyebrow{
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--color-primary-strong);
+  font-weight:500;
+  margin:0 0 14px;
+}
+.section-title{
+  font-family:var(--font-display);
+  font-weight:500;
+  font-size:28px;
+  text-align:center;
+  margin:0 0 40px;
+}
+
+/* ---------- LINKS ---------- */
+.link{font-size:13px;color:var(--color-text-secondary);}
+.link:hover{color:var(--color-text-primary);}
+
+/* ---------- BUTTONS ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-size:14px;font-weight:500;
+  padding:13px 26px;border-radius:var(--radius-pill);
+  border:1px solid var(--color-text-primary);
+  background:var(--color-text-primary);color:#fff;
+  cursor:pointer;transition:opacity .15s ease;
+}
+.btn:hover{opacity:0.88;}
+.btn.outline{
+  background:transparent;color:var(--color-text-primary);
+  border:1px solid var(--color-tertiary);
+}
+.btn.outline:hover{background:var(--color-secondary);opacity:1;}
+.btn.small{padding:9px 18px;font-size:13px;}
+
+/* ---------- INPUTS & FORM FIELDS ---------- */
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"],
+textarea,
+select{
+  width:100%;
+  font-family:var(--font-body);font-size:14px;color:var(--color-text-primary);
+  background:var(--color-surface);
+  border:1px solid var(--color-tertiary);
+  border-radius:var(--radius-input);
+  padding:11px 16px;
+  outline:none;
+  transition:border-color .15s ease;
+}
+input::placeholder, textarea::placeholder{color:var(--color-text-secondary);}
+input:focus, textarea:focus, select:focus{border-color:var(--color-primary-strong);}
+label{
+  display:block;font-size:12px;font-weight:500;
+  color:var(--color-text-secondary);margin-bottom:6px;
+}
+
+/* Search bar component — used in nav and shop/category filter rows */
+.search-bar{
+  display:flex;align-items:center;gap:10px;
+  background:var(--color-surface);
+  border:1px solid var(--color-tertiary);
+  border-radius:var(--radius-pill);
+  padding:8px 16px;
+  max-width:320px;
+}
+.search-bar .icon{font-size:14px;color:var(--color-text-secondary);flex-shrink:0;}
+.search-bar input{
+  border:none;background:transparent;padding:4px 0;flex:1;
+}
+.search-bar input:focus{border:none;}
+
+/* ---------- PILLS / TAGS ---------- */
+.pill{
+  display:inline-flex;align-items:center;
+  font-size:12px;font-weight:500;
+  padding:6px 14px;border-radius:var(--radius-pill);
+  border:1px solid var(--color-tertiary);
+  color:var(--color-text-secondary);
+  background:var(--color-surface);
+}
+.pill.active{
+  border-color:var(--color-primary-strong);
+  color:var(--color-text-on-primary);
+  background:var(--color-secondary);
+}
+
+/* ---------- HEADER / NAV (shared across all pages) ---------- */
+nav.top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 40px;border-bottom:1px solid var(--color-tertiary);
+  background:var(--color-background);
+}
+.logo{font-family:var(--font-display);font-size:22px;}
+.logo span{color:var(--color-primary-strong);}
+.nav-links{display:flex;gap:32px;font-size:14px;}
+.nav-links a.active{border-bottom:2px solid var(--color-primary-strong);padding-bottom:4px;}
+.nav-icons{display:flex;align-items:center;gap:20px;}
+.icon-btn{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--color-tertiary);font-size:14px;position:relative;
+  background:none;cursor:pointer;color:var(--color-text-primary);
+}
+.icon-btn:hover{background:var(--color-secondary);}
+.cart-count{
+  position:absolute;top:-4px;right:-4px;
+  background:var(--color-text-primary);color:#fff;
+  font-size:9px;width:16px;height:16px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* ---------- FOOTER (shared across all pages) ---------- */
+footer{
+  border-top:1px solid var(--color-tertiary);
+  padding:40px 0;text-align:center;
+  font-size:12px;color:var(--color-text-secondary);
+}
+footer .logo{margin-bottom:8px;}
+
+/* ---------- SHARED RESPONSIVE RULES ---------- */
+@media (max-width:900px){
+  .wrap{padding:0 20px;}
+  .nav-links{display:none;}
+}

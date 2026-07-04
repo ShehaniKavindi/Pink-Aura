@@ -1,0 +1,123 @@
+/* ==========================================================================
+   PiNK AURA — category.css
+   Page-specific styles for category.html only.
+   Relies on css/style.css being loaded first for tokens + shared components.
+   ========================================================================== */
+
+/* ---------- HERO (simple text header for this page) ---------- */
+.hero{text-align:center;padding:64px 32px 40px;}
+.hero .hero-sub{font-size:15px;color:var(--color-text-secondary);max-width:400px;margin:0 auto;}
+.hero-title{
+  font-weight:400;
+  font-size:clamp(34px, 5vw, 52px);
+  line-height:1.15;
+  margin:0 0 14px;
+}
+.hero-title em{font-style:italic;color:var(--color-primary-strong);}
+
+/* ---------- CATEGORY GRID (text tiles) ---------- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  gap:12px;
+  padding:16px 32px 8px;
+}
+.tile{
+  grid-column:span 2;
+  background:var(--color-surface);
+  border:1px solid var(--color-tertiary);
+  border-radius:10px;
+  padding:24px 22px;
+  cursor:pointer;
+  transition:border-color .15s ease, background .15s ease;
+  min-height:150px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.tile.large{grid-column:span 3;min-height:196px;}
+.tile.wide{grid-column:span 3;min-height:110px;flex-direction:row;align-items:center;justify-content:space-between;}
+.tile:hover{border-color:var(--color-primary);background:var(--color-secondary);}
+.tile.active{border-color:var(--color-primary-strong);background:var(--color-secondary);}
+
+.tile-index{
+  font-size:11px;
+  color:var(--color-text-secondary);
+  margin-bottom:14px;
+  letter-spacing:0.04em;
+}
+.tile.wide .tile-index{margin-bottom:0;}
+.tile-name{
+  font-family:var(--font-display);
+  font-size:22px;
+  margin:0 0 4px;
+}
+.tile.large .tile-name{font-size:28px;}
+.tile-count{
+  font-size:12px;
+  color:var(--color-text-secondary);
+}
+.tile.wide .tile-name{margin:0;}
+.tile-arrow{
+  font-size:18px;color:var(--color-primary-strong);
+  display:none;
+}
+.tile.wide .tile-arrow{display:block;}
+
+/* ---------- SUBCATEGORY PANEL ---------- */
+.panel-wrap{padding:6px 32px 80px;}
+.panel{
+  margin-top:24px;
+  border-top:1px solid var(--color-tertiary);
+  padding-top:32px;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:16px;
+}
+.panel-head{
+  grid-column:1/-1;
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:2px;
+}
+.panel-head h2{font-size:20px;}
+.panel-head .tag{font-size:12px;color:var(--color-text-secondary);}
+
+.sub-card{
+  background:var(--color-surface);
+  border:1px solid var(--color-tertiary);
+  border-radius:10px;
+  padding:20px;
+}
+.sub-name{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.05em;
+  color:var(--color-text-secondary);
+  margin:0 0 12px;
+}
+.sub-swatch{
+  width:100%;height:74px;border-radius:8px;
+  background:var(--color-secondary);
+  margin-bottom:14px;
+}
+.prod-name{
+  font-family:var(--font-display);
+  font-size:17px;
+  margin:0 0 6px;
+}
+.prod-example{
+  font-size:12px;
+  color:var(--color-text-secondary);
+  margin:0;
+}
+.prod-example b{color:var(--color-text-primary);font-weight:500;}
+
+/* ---------- RESPONSIVE (category page only) ---------- */
+@media (max-width:760px){
+  .grid{grid-template-columns:repeat(2,1fr);padding-left:18px;padding-right:18px;}
+  .tile, .tile.large, .tile.wide{grid-column:span 2;}
+  .panel{grid-template-columns:1fr;}
+  .panel-wrap{padding-left:18px;padding-right:18px;}
+}
