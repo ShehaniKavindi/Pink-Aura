@@ -1,0 +1,442 @@
+/* ==========================================================================
+   PiNK AURA — product.css
+   Page-specific styles for product.html only.
+   Relies on css/style.css being loaded first for tokens + shared components.
+   ========================================================================== */
+
+/* ---------- BREADCRUMB ---------- */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    padding: 22px 0 0;
+}
+
+.breadcrumb a:hover {
+    color: var(--color-text-primary);
+}
+
+.breadcrumb .sep {
+    opacity: .5;
+}
+
+.breadcrumb .current {
+    color: var(--color-text-primary);
+}
+
+/* ---------- LAYOUT ---------- */
+.product-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 84px;
+    align-items: start;
+    padding: 32px 0 0;
+}
+
+/* ---------- GALLERY (LHS) ---------- */
+.gallery {
+    position: sticky;
+    top: 24px;
+}
+
+.gallery-main {
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--color-secondary);
+    aspect-ratio: 1/1;
+    position: relative;
+}
+
+.gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    background: var(--color-text-primary);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+}
+
+.gallery-wishlist {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(43, 30, 36, 0.14);
+}
+
+.gallery-wishlist.active {
+    color: var(--color-primary-strong);
+}
+
+.gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.gallery-thumb {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    background: var(--color-secondary);
+    border: 2px solid transparent;
+    cursor: pointer;
+    padding: 0;
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-thumb.active {
+    border-color: var(--color-primary-strong);
+}
+
+/* ---------- DETAILS (RHS) ---------- */
+.details .eyebrow {
+    margin-bottom: 10px;
+}
+
+.product-title {
+    font-size: 32px;
+    line-height: 1.2;
+    margin: 0 0 12px;
+}
+
+.detail-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-bottom: 20px;
+}
+
+.detail-rating .stars {
+    color: var(--color-primary-strong);
+    letter-spacing: 1px;
+}
+
+.detail-rating .link {
+    text-decoration: underline;
+}
+
+.detail-price-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.detail-price {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.detail-price .old {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--color-text-secondary);
+    text-decoration: line-through;
+    margin-left: 8px;
+}
+
+.detail-save {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-on-primary);
+    background: var(--color-secondary);
+    border: 1px solid var(--color-tertiary);
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+}
+
+.detail-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin: 0 0 28px;
+}
+
+/* ---------- VARIANT / SHADE SELECTOR ---------- */
+.option-group {
+    margin-bottom: 24px;
+}
+
+.option-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 10px;
+    display: flex;
+    gap: 6px;
+}
+
+.option-label b {
+    color: var(--color-text-primary);
+    font-weight: 600;
+}
+
+.option-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.option-pill {
+    font-family: var(--font-body);
+    font-size: 13px;
+    padding: 9px 18px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--color-tertiary);
+    background: var(--color-surface);
+    color: var(--color-text-primary);
+    cursor: pointer;
+}
+
+.option-pill:hover {
+    background: var(--color-secondary);
+}
+
+.option-pill.active {
+    border-color: var(--color-primary-strong);
+    background: var(--color-text-primary);
+    color: #fff;
+}
+
+/* ---------- QTY + ADD TO CART ---------- */
+.buy-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.qty-stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-tertiary);
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+}
+
+.qty-stepper button {
+    width: 40px;
+    height: 44px;
+    border: none;
+    background: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: var(--color-text-primary);
+}
+
+.qty-stepper button:hover {
+    background: var(--color-secondary);
+}
+
+.qty-stepper .qty-val {
+    width: 36px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.buy-row .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 14px 26px;
+}
+
+.icon-btn.lg {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+}
+
+.stock-note {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin-bottom: 28px;
+}
+
+.stock-note .dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #6FBF7C;
+    margin-right: 6px;
+}
+
+/* ---------- TRUST STRIP ---------- */
+.trust-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 20px 0;
+    border-top: 1px solid var(--color-tertiary);
+    border-bottom: 1px solid var(--color-tertiary);
+    margin-bottom: 28px;
+}
+
+.trust-item {
+    text-align: center;
+    font-size: 11px;
+    color: var(--color-text-secondary);
+}
+
+.trust-item .ic {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+/* ---------- ACCORDION ---------- */
+.accordion .acc-item {
+    border-bottom: 1px solid var(--color-tertiary);
+}
+
+.accordion summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 2px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+.accordion summary .chev {
+    transition: transform .15s ease;
+    color: var(--color-text-secondary);
+}
+
+.accordion details[open] summary .chev {
+    transform: rotate(45deg);
+}
+
+.accordion .acc-body {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    padding: 0 2px 20px;
+}
+
+.accordion .acc-body ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+/* ---------- RELATED PRODUCTS ---------- */
+.related {
+    padding-top: 24px;
+    margin-top: 2rem;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.related-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-tertiary);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+}
+
+.related-image {
+    background: var(--color-secondary);
+}
+
+.related-image img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+.related-body {
+    padding: 14px 16px 18px;
+}
+
+.related-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    margin: 0 0 6px;
+}
+
+.related-price {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px) {
+    .product-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .gallery {
+        position: static;
+    }
+
+    .product-title {
+        font-size: 26px;
+    }
+
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width:520px) {
+    .gallery-thumbs {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+    }
+
+    .buy-row {
+        flex-wrap: wrap;
+    }
+
+    .buy-row .btn {
+        width: 100%;
+    }
+
+    .trust-strip {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+}
