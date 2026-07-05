@@ -27,25 +27,7 @@ A minimal, modern e-commerce front end for **PiNK AURA**, a fictional cosmetics 
 
 All design tokens live in `assets/css/style.css` under `:root` and are locked — every page pulls from the same values, nothing is hardcoded per page.
 
-**Fonts**
-| Token | Font | Used for |
-|---|---|---|
-| `--font-display` | Fraunces | headlines, category names, product names |
-| `--font-body` | Work Sans | body copy, labels, nav, UI |
-
-**Colors**
-| Token | Hex | Use |
-|---|---|---|
-| `--color-primary` | `#F4B9CE` | core brand pink |
-| `--color-primary-strong` | `#E58EAD` | hover/active states, emphasis |
-| `--color-secondary` | `#FBE7EE` | pale blush, soft fills |
-| `--color-tertiary` | `#F3D6E2` | borders, dividers |
-| `--color-background` | `#FFFDFC` | page background |
-| `--color-surface` | `#FFFFFF` | card surfaces |
-| `--color-text-primary` | `#2B1E24` | headings, body text |
-| `--color-text-secondary` | `#8C7580` | supporting/muted text |
-
-`style.css` also holds every **shared component** used across pages: buttons, inputs, the search bar, pills/tags, header/nav, and the footer. Page-specific styles (hero, product grid, dashboard layout, etc.) live in their own file next to it, e.g. `home.css`, `category.css`, `admin.css`.
+`style.css` holds every **shared component** used across pages: buttons, inputs, the search bar, pills/tags, header/nav, and the footer. Page-specific styles (hero, product grid, dashboard layout, etc.) live in their own file next to it, e.g. `home.css`, `category.css`, `admin.css`.
 
 ## Project structure
 
