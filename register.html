@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create account — PiNK AURA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+</head>
+
+<body>
+
+  <div class="login-page register-page">
+    <img class="login-bg" src="assets/images/site-images/loginBg.jpg" alt="">
+    <div class="login-bg-overlay"></div>
+
+    <a class="login-logo" href="index.html">PiNK <span>AURA</span></a>
+
+    <div class="login-card register-card">
+      <p class="eyebrow">Get started</p>
+      <h1>Create your account</h1>
+      <p class="login-sub">Join PiNK AURA for faster checkout, order tracking, and member-only offers.</p>
+
+      <form class="login-form" id="registerForm">
+
+        <div class="name-row">
+          <div class="field">
+            <label for="firstName">First name</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-user icon-left"></i>
+              <input type="text" id="firstName" name="firstName" placeholder="Amaya" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="lastName">Last name</label>
+            <div class="input-wrap">
+              <i class="fa-solid fa-user icon-left"></i>
+              <input type="text" id="lastName" name="lastName" placeholder="Perera" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-envelope icon-left"></i>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock icon-left"></i>
+            <input type="password" id="password" name="password" placeholder="••••••••" minlength="8" required>
+            <button type="button" class="toggle-pass" data-target="password" aria-label="Show password">
+              <i class="fa-solid fa-eye-slash"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="confirmPassword">Confirm password</label>
+          <div class="input-wrap">
+            <i class="fa-solid fa-lock icon-left"></i>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" minlength="8" required>
+            <button type="button" class="toggle-pass" data-target="confirmPassword" aria-label="Show password">
+              <i class="fa-solid fa-eye-slash"></i>
+            </button>
+          </div>
+          <p class="field-hint" id="matchHint"></p>
+        </div>
+
+        <div class="terms-row">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+        </div>
+
+        <button type="submit" class="btn login-submit">Create account &rarr;</button>
+      </form>
+
+      <div class="login-divider"><span>or</span></div>
+
+      <button type="button" class="btn outline login-alt">
+        <span class="g-icon">G</span> Continue with Google
+      </button>
+
+      <p class="login-footer-text">Already have an account? <a href="login.html">Sign in</a></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('registerForm');
+    const password = document.getElementById('password');
+    const confirmPassword = document.getElementById('confirmPassword');
+    const matchHint = document.getElementById('matchHint');
+
+    function checkMatch() {
+      if (!confirmPassword.value) {
+        matchHint.textContent = '';
+        matchHint.className = 'field-hint';
+        return true;
+      }
+      const matches = password.value === confirmPassword.value;
+      matchHint.textContent = matches ? 'Passwords match' : 'Passwords do not match';
+      matchHint.className = 'field-hint ' + (matches ? 'valid' : 'invalid');
+      return matches;
+    }
+
+    password.addEventListener('input', checkMatch);
+    confirmPassword.addEventListener('input', checkMatch);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!checkMatch()) return;
+      // TODO: wire up to process/register.php
+      console.log('Register submitted:', {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        email: document.getElementById('email').value,
+        password: password.value,
+        terms: document.getElementById('terms').checked
+      });
+    });
+
+    // Show / hide password — works for both password fields independently
+    document.querySelectorAll('.toggle-pass').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const input = document.getElementById(btn.dataset.target);
+        const isHidden = input.type === 'password';
+        input.type = isHidden ? 'text' : 'password';
+        btn.innerHTML = isHidden ? '<i class="fa-solid fa-eye"></i>' : '<i class="fa-solid fa-eye-slash"></i>';
+        btn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

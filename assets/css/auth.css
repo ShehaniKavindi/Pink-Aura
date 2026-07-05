@@ -5,222 +5,942 @@
    ========================================================================== */
 
 /* ---------- PAGE / BACKGROUND ---------- */
-.login-page{
-  position:relative;
-  min-height:100vh;
-  overflow:hidden;
-  display:flex;
-  align-items:center;
-  justify-content:flex-start;
-  padding:32px 32px 32px 80px;
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 32px 32px 32px 80px;
 }
-.login-bg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:0;
+
+.login-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
-.login-bg-overlay{
-  position:absolute;
-  inset:0;
-  z-index:1;
+
+.login-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   /* background:linear-gradient(180deg,
     rgba(37, 29, 32, 0.105) 0%,
     rgba(135, 117, 125, 0.35) 100%); */
 }
 
-.login-logo{
-  position:absolute;
-  top:32px;
-  left:40px;
-  z-index:3;
-  font-family:var(--font-display);
-  font-size:22px;
-  color:#fff;
+.login-logo {
+  position: absolute;
+  top: 32px;
+  left: 40px;
+  z-index: 3;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: #fff;
 }
-.login-logo span{color:var(--color-primary-strong);}
+
+.login-logo span {
+  color: var(--color-primary-strong);
+}
 
 /* ---------- GLASS CARD ---------- */
-.login-card{
-  position:relative;
-  z-index:2;
-  width:100%;
-  max-width:400px;
-  padding:44px 38px;
-  border-radius:24px;
+.login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  padding: 44px 38px;
+  border-radius: 24px;
 
   /* glass core */
-  background:rgba(255,255,255,0.5);
-  backdrop-filter:blur(24px) saturate(180%);
-  -webkit-backdrop-filter:blur(24px) saturate(180%);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
 
-  border:1px solid transparent;
-  background-clip:padding-box;
+  border: 1px solid transparent;
+  background-clip: padding-box;
 
   box-shadow:
-    0 24px 60px rgba(43,30,36,0.28),
-    0 1px 1px rgba(255,255,255,0.7) inset,
-    0 -1px 1px rgba(43,30,36,0.06) inset;
+    0 24px 60px rgba(43, 30, 36, 0.28),
+    0 1px 1px rgba(255, 255, 255, 0.7) inset,
+    0 -1px 1px rgba(43, 30, 36, 0.06) inset;
 }
 
 /* gradient border */
-.login-card::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:24px;
-  padding:1px;
-  background:linear-gradient(135deg,
-    rgba(255,255,255,0.85) 0%,
-    rgba(255,255,255,0.2) 45%,
-    rgba(255,255,255,0.05) 100%);
+.login-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1px;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.2) 45%,
+      rgba(255, 255, 255, 0.05) 100%);
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
-  pointer-events:none;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* specular highlight top */
-.login-card::after{
-  content:"";
-  position:absolute;
-  top:0; left:0; right:0;
-  height:36%;
-  border-radius:24px 24px 60% 60% / 24px 24px 26px 26px;
-  background:linear-gradient(180deg,
-    rgba(255,255,255,0.4) 0%,
-    rgba(255,255,255,0) 100%);
-  pointer-events:none;
+.login-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36%;
+  border-radius: 24px 24px 60% 60% / 24px 24px 26px 26px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
 }
 
-.login-card > *{position:relative;z-index:1;}
-
-.login-card .eyebrow{margin-bottom:8px;}
-.login-card h1{
-  font-size:26px;
-  line-height:1.2;
-  margin:0 0 10px;
+.login-card>* {
+  position: relative;
+  z-index: 1;
 }
-.login-sub{
-  font-size:13px;
-  color:var(--color-text-secondary);
-  line-height:1.6;
-  margin:0 0 28px;
+
+.login-card .eyebrow {
+  margin-bottom: 8px;
+}
+
+.login-card h1 {
+  font-size: 26px;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+
+.login-sub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin: 0 0 28px;
 }
 
 /* ---------- FORM ---------- */
-.login-form label{
-  font-size:12px;
-  font-weight:500;
-  color:var(--color-text-on-primary);
-  margin-bottom:6px;
+.login-form label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-on-primary);
+  margin-bottom: 6px;
 }
-.login-form .field{margin-bottom:18px;}
+
+.login-form .field {
+  margin-bottom: 18px;
+}
+
+/*  */
+.input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrap i.icon-left {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  pointer-events: none;
+  background: none;
+  border: none;
+  z-index: 1;
+}
+
+.toggle-pass {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 0.35rem;
+  font-size: 0.85rem;
+}
+
+.toggle-pass:hover {
+  color: var(--primary);
+}
+
+/*  */
 
 .login-form input[type="email"],
 .login-form input[type="password"],
-.login-form input[type="text"]{
-  background:rgba(255,255,255,0.6);
-  border:1px solid rgba(255,255,255,0.7);
-  backdrop-filter:blur(6px);
-  -webkit-backdrop-filter:blur(6px);
+.login-form input[type="text"] {
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  /*  */
+  padding: 0.75rem 0.9rem 0.75rem 2.5rem;
+  /*  */
 }
+
 .login-form input[type="email"]:focus,
-.login-form input[type="password"]:focus{
-  background:rgba(255,255,255,0.85);
-  border-color:var(--color-primary-strong);
+.login-form input[type="password"]:focus {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--color-primary-strong);
 }
 
-.login-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:24px;
-  font-size:12.5px;
-}
-.checkbox{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  color:var(--color-text-secondary);
-  cursor:pointer;
-}
-.checkbox input{
-  width:15px;
-  height:15px;
-  accent-color:var(--color-primary-strong);
-  cursor:pointer;
+.login-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  font-size: 12.5px;
 }
 
-.login-submit{
-  width:100%;
-  justify-content:center;
-  padding:14px 26px;
-  margin-bottom:22px;
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--color-primary-strong);
+  cursor: pointer;
+}
+
+.login-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 14px 26px;
+  margin-bottom: 22px;
 }
 
 /* ---------- DIVIDER ---------- */
-.login-divider{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  margin-bottom:22px;
-  font-size:12px;
-  color:var(--color-text-secondary);
+.login-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  font-size: 12px;
+  color: var(--color-text-secondary);
 }
+
 .login-divider::before,
-.login-divider::after{
-  content:"";
-  flex:1;
-  height:1px;
-  background:rgba(43,30,36,0.14);
+.login-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(43, 30, 36, 0.14);
 }
 
-.login-alt{
-  width:100%;
-  justify-content:center;
-  gap:10px;
-  background:rgba(255,255,255,0.55);
-  margin-bottom:26px;
-}
-.login-alt .g-icon{
-  width:18px;height:18px;
-  border-radius:50%;
-  background:var(--color-surface);
-  color:var(--color-text-on-primary);
-  font-family:var(--font-display);
-  font-size:11px;
-  font-weight:600;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+.login-alt {
+  width: 100%;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  margin-bottom: 26px;
 }
 
-.login-footer-text{
-  text-align:center;
-  font-size:13px;
-  color:var(--color-text-secondary);
-  margin:0;
+.login-alt .g-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text-on-primary);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.login-footer-text a{
-  color:var(--color-text-on-primary);
-  font-weight:500;
-  text-decoration:underline;
+
+.login-footer-text {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.login-footer-text a {
+  color: var(--color-text-on-primary);
+  font-weight: 500;
+  text-decoration: underline;
 }
 
 /* ---------- RESPONSIVE ---------- */
-@media (max-width:520px){
-  .login-page{padding:20px;justify-content:center;}
-  .login-logo{top:20px;left:20px;font-size:18px;}
-  .login-card{
-    max-width:100%;
-    padding:34px 24px;
-    border-radius:20px;
+@media (max-width:520px) {
+  .login-page {
+    padding: 20px;
+    justify-content: center;
   }
-  .login-card::before{border-radius:20px;}
-  .login-card h1{font-size:22px;}
+
+  .login-logo {
+    top: 20px;
+    left: 20px;
+    font-size: 18px;
+  }
+
+  .login-card {
+    max-width: 100%;
+    padding: 34px 24px;
+    border-radius: 20px;
+  }
+
+  .login-card::before {
+    border-radius: 20px;
+  }
+
+  .login-card h1 {
+    font-size: 22px;
+  }
+}
+
+/* ==========================================================================
+   REGISTER PAGE — additions only, nothing above this line was touched.
+   Reuses .login-page/.login-card/.login-form/.field/.input-wrap/.toggle-pass/
+   .login-row/.checkbox/.login-submit/.login-divider/.login-alt/.login-footer-text
+   from the login styles above. Only new, register-specific selectors below.
+   ========================================================================== */
+
+/* two-column First name / Last name row */
+.name-row {
+  display: flex;
+  gap: 14px;
+}
+
+.name-row .field {
+  flex: 1;
+}
+
+/* terms & conditions row (checkbox + inline links, kept as a separate
+   input+label instead of one big <label> wrap so the Terms/Privacy
+   links stay independently clickable) */
+.terms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+
+.terms-row input {
+  width: 15px;
+  height: 15px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--color-primary-strong);
+  cursor: pointer;
+}
+
+.terms-row label {
+  cursor: pointer;
+}
+
+.terms-row a {
+  color: var(--color-text-on-primary);
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* inline password-match hint under confirm password */
+.field-hint {
+  font-size: 11.5px;
+  margin-top: 6px;
+}
+
+.field-hint.valid {
+  color: #4C8B5C;
+}
+
+.field-hint.invalid {
+  color: #C4536B;
+}
+
+/* register page needs the card to start below the logo (it's taller than
+   the login card), and a bit wider for the two-column name row —
+   scoped to .register-page/.register-card only, .login-page/.login-card
+   used by login.html are untouched */
+.register-page {
+  align-items: flex-start;
+  padding-top: 110px;
+}
+
+.register-card {
+  max-width: 480px;
+}
+
+@media (max-width:520px) {
+  .name-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .register-page {
+    padding-top: 90px;
+  }
+}
+
+/* ==========================================================================
+   FORGOT PASSWORD PAGE — additions only, nothing above this line touched.
+   Recolored/re-fonted to PiNK AURA tokens; same liquid-glass recipe as
+   .login-card/.register-card. No background photo here, so two soft
+   blurred blobs behind the card give the glass something to refract.
+   ========================================================================== */
+
+.fp-body {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background:
+    radial-gradient(circle at 15% 20%, var(--color-secondary) 0%, var(--color-background) 55%),
+    radial-gradient(circle at 85% 85%, var(--color-tertiary) 0%, transparent 60%);
+}
+
+.fp-body::before,
+.fp-body::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.fp-body::before {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: -120px;
+  background: var(--color-primary);
+  opacity: .35;
+  filter: blur(90px);
+}
+
+.fp-body::after {
+  width: 380px;
+  height: 380px;
+  bottom: -160px;
+  right: -100px;
+  background: var(--color-primary-strong);
+  opacity: .22;
+  filter: blur(100px);
+}
+
+/* ---------- BACK LINK ---------- */
+.fp-back {
+  position: fixed;
+  top: 28px;
+  left: 32px;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.fp-back:hover {
+  color: var(--color-text-primary);
+}
+
+/* ---------- TOAST ---------- */
+.toast-msg {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 14px;
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 12px 32px rgba(43, 30, 36, 0.16);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.toast-msg.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#toast-icon {
+  font-size: 16px;
+  color: var(--color-primary-strong);
+  flex-shrink: 0;
+}
+
+.toast-msg.success #toast-icon {
+  color: #4C8B5C;
+}
+
+.toast-msg.error #toast-icon {
+  color: #C4536B;
+}
+
+/* ---------- CARD ---------- */
+.fp-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 460px;
+}
+
+.fp-card-inner {
+  position: relative;
+  padding: 44px 40px;
+  border-radius: 28px;
+
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(26px) saturate(180%);
+  -webkit-backdrop-filter: blur(26px) saturate(180%);
+
+  border: 1px solid transparent;
+  background-clip: padding-box;
+
+  box-shadow:
+    0 24px 60px rgba(43, 30, 36, 0.24),
+    0 1px 1px rgba(255, 255, 255, 0.7) inset,
+    0 -1px 1px rgba(43, 30, 36, 0.06) inset;
+}
+
+.fp-card-inner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  padding: 1px;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.85) 0%,
+      rgba(255, 255, 255, 0.2) 45%,
+      rgba(255, 255, 255, 0.05) 100%);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.fp-card-inner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36%;
+  border-radius: 28px 28px 60% 60% / 28px 28px 26px 26px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.fp-card-inner>* {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- STEPS INDICATOR ---------- */
+.fp-steps {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.fp-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.fp-step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  border: 2px solid var(--color-tertiary);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  transition: all .2s ease;
+}
+
+.fp-step.active .fp-step-dot {
+  border-color: var(--color-primary-strong);
+  background: var(--color-primary-strong);
+  color: #fff;
+  box-shadow: 0 0 0 4px rgba(229, 142, 173, 0.2);
+}
+
+.fp-step.done .fp-step-dot {
+  border-color: var(--color-primary-strong);
+  background: var(--color-secondary);
+  color: var(--color-primary-strong);
+}
+
+.fp-step-label {
+  font-size: 11px;
+  color: var(--color-text-secondary);
+}
+
+.fp-step.active .fp-step-label {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.fp-step-line {
+  flex: 1;
+  height: 2px;
+  background: var(--color-tertiary);
+  margin: 16px 8px 0;
+  min-width: 32px;
+  transition: background .2s ease;
+}
+
+.fp-step-line.done {
+  background: var(--color-primary-strong);
+}
+
+/* ---------- PANELS ---------- */
+.fp-panel {
+  display: none;
+}
+
+.fp-panel.active {
+  display: block;
+  animation: fpFadeIn .25s ease;
+}
+
+@keyframes fpFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fp-icon-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-primary-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin: 0 auto 20px;
+}
+
+.fp-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.25;
+  text-align: center;
+  margin: 0 0 10px;
+  color: var(--color-text-primary);
+}
+
+.fp-subtitle {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.fp-subtitle strong {
+  color: var(--color-text-primary);
+}
+
+/* ---------- FORM ---------- */
+.fp-form-group {
+  margin-bottom: 18px;
+}
+
+.fp-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-on-primary);
+  margin-bottom: 6px;
+}
+
+.fp-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.fp-input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--color-text-primary);
+  outline: none;
+  border-radius: var(--radius-input);
+  padding: 0.85rem 1rem 0.85rem 2.6rem;
+
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.fp-input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+.fp-input:focus {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--color-primary-strong);
+}
+
+.fp-input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  pointer-events: none;
+}
+
+/* password panel — left icon is hidden inline in the markup, so drop
+   the reserved left padding and add right padding for the toggle */
+.fp-pw-wrap .fp-input {
+  padding-left: 1rem;
+  padding-right: 2.75rem;
+}
+
+.fp-pw-toggle {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  padding: 6px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.fp-pw-toggle:hover {
+  color: var(--color-text-primary);
+  background: var(--color-secondary);
+}
+
+.fp-hint {
+  font-size: 11.5px;
+  margin-top: 6px;
+}
+
+/* ---------- BUTTON / DIVIDER / BOTTOM LINKS ---------- */
+.fp-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 13px 26px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-text-primary);
+  background: var(--color-text-primary);
+  color: #fff;
+  cursor: pointer;
+  transition: opacity .15s ease;
+  margin-bottom: 4px;
+}
+
+.fp-btn:hover {
+  opacity: 0.88;
+}
+
+.fp-divider {
+  height: 1px;
+  background: rgba(43, 30, 36, 0.12);
+  margin: 24px 0;
+}
+
+.fp-bottom {
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-text-secondary);
+}
+
+.fp-bottom a {
+  color: var(--color-text-on-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.fp-resend {
+  text-align: center;
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  margin: 14px 0 0;
+}
+
+.fp-resend a {
+  color: var(--color-primary-strong);
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+#resendTimer {
+  color: var(--color-text-secondary);
+}
+
+/* ---------- OTP INPUTS ---------- */
+.otp-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.otp-input {
+  width: 44px;
+  height: 52px;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  border-radius: 12px;
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: border-color .15s ease, background .15s ease;
+}
+
+.otp-input:focus {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: var(--color-primary-strong);
+}
+
+.otp-input.filled {
+  border-color: var(--color-primary-strong);
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* ---------- SUCCESS PANEL ---------- */
+.fp-success {
+  text-align: center;
+}
+
+.fp-success-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  color: var(--color-primary-strong);
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.fp-success h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 22px;
+  margin: 0 0 10px;
+  color: var(--color-text-primary);
+}
+
+.fp-success p {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0 0 28px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:520px) {
+  .fp-body {
+    padding: 24px 16px;
+  }
+
+  .fp-back {
+    top: 18px;
+    left: 18px;
+    font-size: 12px;
+  }
+
+  .toast-msg {
+    left: 16px;
+    right: 16px;
+    max-width: none;
+  }
+
+  .fp-card-inner {
+    padding: 32px 22px;
+    border-radius: 22px;
+  }
+
+  .fp-card-inner::before {
+    border-radius: 22px;
+  }
+
+  .fp-title {
+    font-size: 20px;
+  }
+
+  .otp-input {
+    width: 38px;
+    height: 46px;
+    font-size: 17px;
+  }
+
+  .otp-group {
+    gap: 8px;
+  }
 }
