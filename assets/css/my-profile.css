@@ -1,0 +1,266 @@
+/* ==========================================================================
+   PiNK AURA — my-profile.css
+   Page-specific styles for my-profile.html only.
+   Relies on css/style.css being loaded first for tokens, inputs, buttons,
+   and the shared nav/footer. Only layout + this-page-only rules live here.
+   ========================================================================== */
+
+/* ---------- PAGE HEADER STRIP ---------- */
+.profile-page-head {
+  padding: 40px 0 8px;
+}
+
+.profile-page-head h1 {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.profile-page-head p {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ---------- LAYOUT ---------- */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding-bottom: 64px;
+}
+
+/* ---------- SIDEBAR ---------- */
+.profile-sidebar {
+  position: sticky;
+  top: 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-tertiary);
+  border-radius: var(--radius-card);
+  padding: 28px 22px;
+}
+
+.profile-avatar-block {
+  text-align: center;
+  padding-bottom: 22px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--color-tertiary);
+}
+
+.profile-avatar {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 14px;
+}
+
+.profile-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--color-secondary);
+}
+
+.avatar-edit-btn {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--color-text-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  cursor: pointer;
+  border: 2px solid var(--color-surface);
+}
+
+.avatar-edit-btn:hover {
+  opacity: 0.85;
+}
+
+.profile-name {
+  font-family: var(--font-display);
+  font-size: 17px;
+  margin: 0 0 2px;
+}
+
+.profile-email {
+  font-size: 12.5px;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ---------- SIDEBAR NAV ---------- */
+.profile-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: none;
+  border: none;
+  text-align: left;
+  width: 100%;
+  cursor: pointer;
+  font-family: var(--font-body);
+}
+
+.profile-nav-link .icon {
+  font-size: 15px;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.profile-nav-link:hover {
+  background: var(--color-secondary);
+  color: var(--color-text-primary);
+}
+
+.profile-nav-link.active {
+  background: var(--color-secondary);
+  color: var(--color-text-on-primary);
+}
+
+.profile-nav-divider {
+  height: 1px;
+  background: var(--color-tertiary);
+  margin: 12px 0;
+}
+
+.profile-nav-link.logout {
+  color: #C4536B;
+}
+
+.profile-nav-link.logout:hover {
+  background: rgba(196, 83, 107, 0.1);
+  color: #C4536B;
+}
+
+/* ---------- CONTENT ---------- */
+.profile-content {
+  min-width: 0;
+}
+
+.profile-panel {
+  display: none;
+  background: var(--color-surface);
+  border: 1px solid var(--color-tertiary);
+  border-radius: var(--radius-card);
+  padding: 32px 34px;
+}
+
+.profile-panel.active {
+  display: block;
+  animation: profileFadeIn .2s ease;
+}
+
+@keyframes profileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.profile-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.profile-panel-head h2 {
+  font-size: 20px;
+}
+
+.profile-panel-sub {
+  font-size: 13px;
+  color: var(--color-text-secondary);
+  margin: 0 0 26px;
+}
+
+.profile-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- FORM LAYOUT (inputs/labels/buttons come from style.css) ---------- */
+.profile-form .field {
+  margin-bottom: 18px;
+}
+
+.profile-form .form-row {
+  display: flex;
+  gap: 16px;
+}
+
+.profile-form .form-row .field {
+  flex: 1;
+}
+
+/* read-only look while a panel isn't in edit mode */
+.profile-form input:disabled,
+.profile-form select:disabled {
+  background: var(--color-background);
+  border-color: transparent;
+  color: var(--color-text-primary);
+  cursor: default;
+}
+
+.profile-form input:disabled::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:900px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-sidebar {
+    position: static;
+  }
+}
+
+@media (max-width:520px) {
+  .profile-page-head {
+    padding: 28px 0 4px;
+  }
+
+  .profile-page-head h1 {
+    font-size: 24px;
+  }
+
+  .profile-panel {
+    padding: 24px 20px;
+  }
+
+  .profile-form .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .profile-panel-head {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}

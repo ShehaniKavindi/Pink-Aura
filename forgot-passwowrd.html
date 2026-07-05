@@ -3,33 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forgot Password | CampusHub</title>
+    <title>Forgot password — PiNK AURA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/bootstrap.css" >
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/auth.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body class="fp-body">
 
     <!-- back link -->
     <a href="login.html" class="fp-back">
-        <i class="bi bi-arrow-left"></i> Back to login
+        <i class="fa-solid fa-arrow-left"></i> Back to login
     </a>
-
 
     <!-- toast -->
     <div class="toast-msg" id="toast-msg">
-        <i id="toast-icon" class="bi bi-x-circle-fill"></i>
+        <i id="toast-icon" class="fa-solid fa-circle-xmark"></i>
         <span id="toast-text" class="toast-text"></span>
     </div>
 
     <div class="fp-card">
-        <div class="fp-card::before"></div>
-        <div class="fp-card-inner">
+        <div class="fp-card-inner login-form">
 
             <!-- ── Steps indicator ── -->
             <div class="fp-steps" id="stepsBar">
@@ -52,39 +48,38 @@
             <!-- ══ PANEL 1 — Enter email ══ -->
             <div class="fp-panel active" id="panel-1">
                 <div class="fp-icon-badge">
-                    <i class="bi bi-envelope-at"></i>
+                    <i class="fa-solid fa-envelope"></i>
                 </div>
                 <h1 class="fp-title">Forgot your password?</h1>
                 <p class="fp-subtitle">
-                    No worries. Enter the email address linked to your CampusHub account
+                    No worries. Enter the email address linked to your PiNK AURA account
                     and we'll send you a verification code.
                 </p>
 
-                <div class="fp-form-group">
-                    <label class="fp-label" for="emailInput">Email address</label>
-                    <div class="fp-input-wrap">
-                        <input class="fp-input" type="email" id="emailInput"
-                            placeholder="yourname@email.com" autocomplete="email">
-                        <i class="bi bi-envelope fp-input-icon"></i>
+                <div class="field">
+                    <label for="emailInput">Email address</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-envelope icon-left"></i>
+                        <input type="email" id="emailInput" placeholder="yourname@email.com" autocomplete="email">
                     </div>
                 </div>
 
                 <button class="fp-btn" onclick="sendOtp();">
-                    <i class="bi bi-send"></i>
+                    <i class="fa-solid fa-paper-plane"></i>
                     Send verification code
                 </button>
 
                 <div class="fp-divider"></div>
                 <div class="fp-bottom">
                     Remembered it?
-                    <a href="auth/studentLogin.html">Sign in instead</a>
+                    <a href="login.html">Sign in instead</a>
                 </div>
             </div>
 
             <!-- ══ PANEL 2 — OTP verify ══ -->
             <div class="fp-panel" id="panel-2">
                 <div class="fp-icon-badge">
-                    <i class="bi bi-shield-lock"></i>
+                    <i class="fa-solid fa-shield-halved"></i>
                 </div>
                 <h1 class="fp-title">Check your inbox</h1>
                 <p class="fp-subtitle">
@@ -92,7 +87,7 @@
                     Enter it below.
                 </p>
 
-                <div class="fp-form-group">
+                <div class="field">
                     <div class="otp-group" id="otpGroup">
                         <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
                         <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
@@ -109,14 +104,14 @@
                 </div>
 
                 <button class="fp-btn" onclick="verifyOtp();">
-                    <i class="bi bi-patch-check"></i>
+                    <i class="fa-solid fa-circle-check"></i>
                     Verify code
                 </button>
 
                 <div class="fp-divider"></div>
                 <div class="fp-bottom">
                     <a onclick="goToStep(1)" style="cursor:pointer;">
-                        <i class="bi bi-arrow-left"></i> Use a different email
+                        <i class="fa-solid fa-arrow-left"></i> Use a different email
                     </a>
                 </div>
             </div>
@@ -124,7 +119,7 @@
             <!-- ══ PANEL 3 — New password ══ -->
             <div class="fp-panel" id="panel-3">
                 <div class="fp-icon-badge">
-                    <i class="bi bi-key"></i>
+                    <i class="fa-solid fa-key"></i>
                 </div>
                 <h1 class="fp-title">Set a new password</h1>
                 <p class="fp-subtitle">
@@ -132,33 +127,31 @@
                     and include an uppercase letter, a number, and a special character.
                 </p>
 
-                <div class="fp-form-group">
-                    <label class="fp-label" for="newPassword">New password</label>
-                    <div class="fp-input-wrap fp-pw-wrap">
-                        <input class="fp-input" type="password" id="newPassword"
-                            placeholder="Create a strong password" autocomplete="new-password">
-                        <i class="bi bi-envelope fp-input-icon" style="display:none;"></i>
-                        <button class="fp-pw-toggle" onclick="togglePw('newPassword', this)" type="button">
-                            <i class="bi bi-eye"></i>
+                <div class="field">
+                    <label for="newPassword">New password</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock icon-left"></i>
+                        <input type="password" id="newPassword" placeholder="Create a strong password" autocomplete="new-password">
+                        <button type="button" class="toggle-pass" data-target="newPassword" aria-label="Show password">
+                            <i class="fa-solid fa-eye-slash"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="fp-form-group">
-                    <label class="fp-label" for="confirmPassword">Confirm new password</label>
-                    <div class="fp-input-wrap fp-pw-wrap">
-                        <input class="fp-input" type="password" id="confirmPassword"
-                            placeholder="Re-enter your password" autocomplete="new-password">
-                        <i class="bi bi-envelope fp-input-icon" style="display:none;"></i>
-                        <button class="fp-pw-toggle" onclick="togglePw('confirmPassword', this)" type="button">
-                            <i class="bi bi-eye"></i>
+                <div class="field">
+                    <label for="confirmPassword">Confirm new password</label>
+                    <div class="input-wrap">
+                        <i class="fa-solid fa-lock icon-left"></i>
+                        <input type="password" id="confirmPassword" placeholder="Re-enter your password" autocomplete="new-password">
+                        <button type="button" class="toggle-pass" data-target="confirmPassword" aria-label="Show password">
+                            <i class="fa-solid fa-eye-slash"></i>
                         </button>
                     </div>
                     <p class="fp-hint" id="pwMatchHint"></p>
                 </div>
 
                 <button class="fp-btn" onclick="resetPassword();">
-                    <i class="bi bi-lock-fill"></i>
+                    <i class="fa-solid fa-lock"></i>
                     Reset password
                 </button>
             </div>
@@ -167,12 +160,12 @@
             <div class="fp-panel" id="panel-4">
                 <div class="fp-success">
                     <div class="fp-success-icon">
-                        <i class="bi bi-check-lg"></i>
+                        <i class="fa-solid fa-check"></i>
                     </div>
                     <h2>Password updated!</h2>
                     <p>Your password has been reset successfully. You can now sign in with your new password.</p>
-                    <a href="studentLogin.php" class="fp-btn" style="text-decoration:none;">
-                        <i class="bi bi-box-arrow-in-right"></i>
+                    <a href="login.html" class="fp-btn" style="text-decoration:none;">
+                        <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Go to sign in
                     </a>
                 </div>
@@ -181,9 +174,8 @@
         </div>
     </div>
 
-    <script src="../js/auth.js"></script>
 <script>
-   
+
     let currentStep = 1;
     let userEmail   = '';
     let resendCountdown = null;
@@ -192,7 +184,6 @@
         document.querySelectorAll('.fp-panel').forEach(p => p.classList.remove('active'));
         document.getElementById('panel-' + n).classList.add('active');
 
-        // update dots
         [1,2,3].forEach(i => {
             const dot = document.getElementById('step-dot-' + i);
             dot.classList.remove('active', 'done', 'pending');
@@ -201,16 +192,13 @@
             else              dot.classList.add('pending');
         });
 
-        // update lines
         document.getElementById('line-1-2').classList.toggle('done', n > 1);
         document.getElementById('line-2-3').classList.toggle('done', n > 2);
 
-        // hide steps bar on success
         document.getElementById('stepsBar').style.display = n === 4 ? 'none' : 'flex';
 
         currentStep = n;
     }
-
 
     function startResendTimer(seconds) {
         const el = document.getElementById('resendTimer');
@@ -267,25 +255,23 @@
             hint.textContent = '';
         } else if (this.value === pw) {
             hint.textContent = 'Passwords match.';
-            hint.style.color = '#0D9488';
+            hint.style.color = '#4C8B5C';
         } else {
             hint.textContent = 'Passwords do not match.';
-            hint.style.color = '#DC2626';
+            hint.style.color = '#C4536B';
         }
     });
 
-    /* ── Password toggle ── */
-    function togglePw(id, btn) {
-        const input = document.getElementById(id);
-        const icon  = btn.querySelector('i');
-        if (input.type === 'password') {
-            input.type = 'text';
-            icon.classList.replace('bi-eye', 'bi-eye-slash');
-        } else {
-            input.type = 'password';
-            icon.classList.replace('bi-eye-slash', 'bi-eye');
-        }
-    }
+    /* ── Password toggle — same data-target pattern as register.html ── */
+    document.querySelectorAll('.toggle-pass').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const input = document.getElementById(btn.dataset.target);
+            const isHidden = input.type === 'password';
+            input.type = isHidden ? 'text' : 'password';
+            btn.innerHTML = isHidden ? '<i class="fa-solid fa-eye"></i>' : '<i class="fa-solid fa-eye-slash"></i>';
+            btn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
+        });
+    });
 </script>
 
 </body>
