@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiNK AURA — Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body class="admin-body">
+
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+            <div class="admin-brand">
+                <span class="admin-mark"></span>
+                <div class="admin-logo">PiNK <span>AURA</span></div>
+                <div class="admin-logo-sub">Admin panel</div>
+            </div>
+
+            <nav class="admin-nav">
+                <div class="admin-nav-group">
+                    <p class="admin-nav-label">Overview</p>
+                    <a href="admin.html" class="admin-nav-link active">
+                        <span class="admin-nav-icon">&#9638;</span> Dashboard
+                    </a>
+                </div>
+
+                <div class="admin-nav-group">
+                    <p class="admin-nav-label">Manage</p>
+                    <a href="#" class="admin-nav-link">
+                        <span class="admin-nav-icon">&#128203;</span> Orders
+                    </a>
+                    <a href="#" class="admin-nav-link">
+                        <span class="admin-nav-icon">&#128230;</span> Products
+                    </a>
+                    <a href="#" class="admin-nav-link">
+                        <span class="admin-nav-icon">&#128100;</span> Customers
+                    </a>
+                    <a href="#" class="admin-nav-link">
+                        <span class="admin-nav-icon">&#9776;</span> Categories
+                    </a>
+                    <a href="#" class="admin-nav-link">
+                        <span class="admin-nav-icon">&#128737;</span> Admins
+                    </a>
+                </div>
+
+                <div class="admin-nav-group">
+                    <p class="admin-nav-label">System</p>
+                    <a href="my-profile.html" class="admin-nav-link">
+                        <span class="admin-nav-icon">&#9881;</span> Profile
+                    </a>
+                </div>
+            </nav>
+
+            <div class="admin-user">
+                <div class="admin-avatar">P</div>
+                <div class="admin-user-info">
+                    <p class="admin-user-name">pinkaura</p>
+                    <p class="admin-user-role">Super admin</p>
+                </div>
+                <button class="admin-logout" aria-label="Log out">&#10132;</button>
+            </div>
+        </aside>
+
+        <!-- MAIN -->
+        <main class="admin-main">
+
+            <header class="admin-header">
+                <div>
+                    <h1 class="admin-title">Dashboard</h1>
+                    <p class="admin-subtitle">Overview &mdash; July 2026</p>
+                </div>
+                <div class="admin-chip">
+                    <span class="admin-chip-avatar">P</span>
+                    <span class="admin-chip-name">pinkaura</span>
+                </div>
+            </header>
+
+            <!-- STAT CARDS -->
+            <section class="admin-stats">
+                <div class="admin-stat-card admin-stat-revenue">
+                    <p class="admin-stat-label">Total revenue</p>
+                    <p class="admin-stat-value">Rs 128,450.00</p>
+                    <p class="admin-stat-note">from placed orders</p>
+                </div>
+                <div class="admin-stat-card admin-stat-orders">
+                    <p class="admin-stat-label">Orders</p>
+                    <p class="admin-stat-value">46</p>
+                    <p class="admin-stat-note">total orders</p>
+                </div>
+                <div class="admin-stat-card admin-stat-customers">
+                    <p class="admin-stat-label">Customers</p>
+                    <p class="admin-stat-value">312</p>
+                    <p class="admin-stat-note">registered accounts</p>
+                </div>
+                <div class="admin-stat-card admin-stat-pending">
+                    <p class="admin-stat-label">Pending orders</p>
+                    <p class="admin-stat-value">7</p>
+                    <p class="admin-stat-note admin-stat-note-alert">needs attention</p>
+                </div>
+            </section>
+
+            <!-- ORDERS + ACTIVITY -->
+            <section class="admin-panels">
+
+                <div class="admin-panel admin-panel-orders">
+                    <div class="admin-panel-head">
+                        <h2>Recent orders</h2>
+                        <a href="#" class="link">View all &rarr;</a>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Order</th>
+                                <th>Customer</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#134</td>
+                                <td>Sanduni Perera</td>
+                                <td>Rs 2,398.00</td>
+                                <td><span class="admin-badge admin-badge-packing">Packing</span></td>
+                            </tr>
+                            <tr>
+                                <td>#133</td>
+                                <td>Dilki Fernando</td>
+                                <td>Rs 1,197.00</td>
+                                <td><span class="admin-badge admin-badge-delivered">Delivered</span></td>
+                            </tr>
+                            <tr>
+                                <td>#132</td>
+                                <td>Thivanka Silva</td>
+                                <td>Rs 3,594.00</td>
+                                <td><span class="admin-badge admin-badge-returned">Returned</span></td>
+                            </tr>
+                            <tr>
+                                <td>#131</td>
+                                <td>Shehani Kavindi</td>
+                                <td>Rs 899.00</td>
+                                <td><span class="admin-badge admin-badge-packing">Packing</span></td>
+                            </tr>
+                            <tr>
+                                <td>#130</td>
+                                <td>Nethmi Wickrama</td>
+                                <td>Rs 1,796.00</td>
+                                <td><span class="admin-badge admin-badge-delivered">Delivered</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="admin-panel admin-panel-activity">
+                    <div class="admin-panel-head">
+                        <h2>Activity</h2>
+                        <a href="#" class="link">Clear</a>
+                    </div>
+                    <ul class="admin-activity-list">
+                        <li><span class="admin-dot"></span> New order #134 placed by Sanduni Perera <span
+                                class="admin-time">Recent</span></li>
+                        <li><span class="admin-dot"></span> New order #133 placed by Dilki Fernando <span
+                                class="admin-time">Recent</span></li>
+                        <li><span class="admin-dot"></span> New order #132 placed by Thivanka Silva <span
+                                class="admin-time">Recent</span></li>
+                        <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Rose Clay Mask (4 left)
+                            <span class="admin-time">Now</span></li>
+                        <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Glow Sunscreen SPF 50 (2
+                            left) <span class="admin-time">Now</span></li>
+                        <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Vitamin C Serum (3 left)
+                            <span class="admin-time">Now</span></li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <!-- TOP PRODUCTS -->
+            <section class="admin-panel admin-panel-top-products" style="padding: 20px;">
+                <div class="admin-panel-head">
+                    <h2>Top products</h2>
+                    <a href="#" class="link">View all &rarr;</a>
+                </div>
+                <div class="admin-top-products-row">
+                    <div class="admin-top-product">
+                        <div class="admin-thumb">&#128230;</div>
+                        <div>
+                            <p class="admin-tp-name">Vitamin C serum</p>
+                            <p class="admin-tp-meta">3 in stock &middot; Serums</p>
+                        </div>
+                        <p class="admin-tp-price">Rs 899.00</p>
+                    </div>
+                    <div class="admin-top-product">
+                        <div class="admin-thumb">&#128230;</div>
+                        <div>
+                            <p class="admin-tp-name">Hydrating moisturizer</p>
+                            <p class="admin-tp-meta">6 in stock &middot; Moisturizers</p>
+                        </div>
+                        <p class="admin-tp-price">Rs 699.00</p>
+                    </div>
+                    <div class="admin-top-product">
+                        <div class="admin-thumb">&#128230;</div>
+                        <div>
+                            <p class="admin-tp-name">Rose clay mask</p>
+                            <p class="admin-tp-meta">4 in stock &middot; Masks</p>
+                        </div>
+                        <p class="admin-tp-price">Rs 499.00</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
