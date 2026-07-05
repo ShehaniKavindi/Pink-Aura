@@ -64,4 +64,31 @@ function addToBag(product, qty = 1) {
 }
 
 /* ---------- INIT ---------- */
-document.addEventListener('DOMContentLoaded', renderBag);
+document.addEventListener('DOMContentLoaded', () => {
+  renderBag();
+
+  const overlay = document.getElementById('bagOverlay');
+  const drawer = document.getElementById('bagModal');
+  if (!overlay || !drawer) return; // bag drawer not on this page
+
+  function openBag() {
+    overlay.classList.add('is-open');
+    drawer.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeBag() {
+    overlay.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-bag-toggle]').forEach(btn => {
+    btn.addEventListener('click', openBag);
+  });
+  document.querySelectorAll('[data-bag-close]').forEach(el => {
+    el.addEventListener('click', closeBag);
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeBag();
+  });
+});
