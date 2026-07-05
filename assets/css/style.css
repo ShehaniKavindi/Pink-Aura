@@ -283,7 +283,7 @@ nav.top {
     background: var(--color-secondary);
 }
 
-.cart-count {
+.bag-count {
     position: absolute;
     top: -4px;
     right: -4px;
@@ -319,5 +319,169 @@ footer .logo {
 
     .nav-links {
         display: none;
+    }
+}
+
+/* ==========================================================================
+   BAG MODAL (shared across all pages — uses Bootstrap's modal JS,
+   fully restyled to match PiNK AURA. Docked to the right like a drawer.)
+   ========================================================================== */
+.bag-modal .modal-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0;
+    height: 100%;
+    max-width: 420px;
+    width: 100%;
+}
+.bag-modal .modal-content {
+    height: 100%;
+    border: none;
+    border-radius: 0;
+    background: var(--color-background);
+}
+.bag-modal.fade .modal-dialog {
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+.bag-modal.show .modal-dialog {
+    transform: translateX(0);
+}
+
+.bag-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 28px;
+    border-bottom: 1px solid var(--color-tertiary);
+}
+.bag-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    margin: 0;
+}
+.bag-title span {
+    color: var(--color-primary-strong);
+}
+.bag-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 4px;
+}
+.bag-close:hover {
+    color: var(--color-text-primary);
+}
+
+.bag-body {
+    padding: 20px 28px;
+    overflow-y: auto;
+    flex: 1;
+}
+.bag-empty {
+    text-align: center;
+    color: var(--color-text-secondary);
+    font-size: 14px;
+    padding: 60px 0;
+}
+
+.bag-item {
+    display: flex;
+    gap: 14px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-tertiary);
+    border-radius: var(--radius-card);
+    padding: 14px;
+    margin-bottom: 14px;
+    position: relative;
+}
+.bag-item-img {
+    width: 64px;
+    height: 64px;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--color-secondary);
+    flex-shrink: 0;
+}
+.bag-item-info {
+    flex: 1;
+    min-width: 0;
+}
+.bag-item-name {
+    font-family: var(--font-display);
+    font-size: 15px;
+    margin: 0 0 6px;
+    padding-right: 20px;
+}
+.bag-item-price {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0 0 6px;
+}
+.bag-item-meta {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    margin: 0;
+}
+.bag-item-remove {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: var(--color-secondary);
+    color: var(--color-text-secondary);
+    font-size: 12px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bag-item-remove:hover {
+    background: var(--color-primary);
+    color: var(--color-text-on-primary);
+}
+
+.bag-footer {
+    padding: 20px 28px 28px;
+    border-top: 1px solid var(--color-tertiary);
+}
+.bag-total-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+.bag-total-label {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+.bag-total-amount {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-primary-strong);
+}
+.bag-checkout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 15px 0;
+}
+
+@media (max-width:520px) {
+    .bag-modal .modal-dialog {
+        max-width: 100%;
     }
 }

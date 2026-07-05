@@ -1,0 +1,207 @@
+/* ==========================================================================
+   PiNK AURA — search.css
+   Page-specific styles for search.html only.
+   Relies on assets/css/style.css being loaded first for tokens + shared
+   components (.btn, .pill, inputs, nav, footer). Do not redefine tokens here.
+   ========================================================================== */
+
+.search-layout{
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:0;
+  align-items:start;
+}
+
+/* ---------- ASIDE ---------- */
+.search-aside{
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+  border-right:1px solid var(--color-tertiary);
+  padding:32px 24px 40px;
+}
+.search-aside-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:24px;
+}
+.search-aside-head h2{font-size:18px;}
+.reset-btn{
+  background:none;border:none;
+  font-size:12px;color:var(--color-primary-strong);
+  cursor:pointer;font-weight:500;
+  text-decoration:underline;
+}
+.reset-btn-bottom{
+  display:block;
+  width:100%;
+  margin-top:12px;
+  padding:11px 0;
+  border:1px solid var(--color-tertiary);
+  border-radius:var(--radius-pill);
+  text-decoration:none;
+  text-align:center;
+}
+
+.filter-block{
+  padding:20px 0;
+  border-bottom:1px solid var(--color-tertiary);
+}
+.filter-block:first-of-type{padding-top:0;}
+.filter-label{
+  font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--color-text-secondary);margin:0 0 14px;
+}
+
+/* -- category list -- */
+.cat-group{margin-bottom:4px;}
+.cat-btn{
+  display:block;width:100%;text-align:left;
+  background:none;border:none;
+  font-family:var(--font-body);font-size:14px;font-weight:500;
+  color:var(--color-text-primary);
+  padding:9px 10px;border-radius:var(--radius-input);
+  cursor:pointer;
+}
+.cat-btn:hover{background:var(--color-secondary);}
+.cat-btn.active{background:var(--color-primary);color:var(--color-text-on-primary);}
+
+.sub-list{padding-left:14px;margin-bottom:6px;}
+.sub-btn{
+  display:block;width:100%;text-align:left;
+  background:none;border:none;
+  font-family:var(--font-body);font-size:13px;
+  color:var(--color-text-secondary);
+  padding:7px 10px;border-radius:var(--radius-input);
+  cursor:pointer;
+}
+.sub-btn:hover{background:var(--color-secondary);color:var(--color-text-primary);}
+.sub-btn.active{background:var(--color-secondary);color:var(--color-primary-strong);font-weight:500;}
+
+/* -- sort select -- */
+#sortSelect{width:100%;}
+
+/* -- price range -- */
+.price-inputs{display:flex;align-items:flex-end;gap:8px;margin-bottom:14px;}
+.price-field{flex:1;}
+.price-field label{margin-bottom:4px;}
+.price-field input{width:100%;}
+.price-sep{color:var(--color-text-secondary);padding-bottom:11px;}
+.price-slider{
+  width:100%;
+  accent-color:var(--color-primary-strong);
+  margin-bottom:14px;
+}
+.price-apply{width:100%;justify-content:center;}
+
+/* ---------- MAIN ---------- */
+.search-main{padding:32px 40px 60px;}
+
+.search-bar-row{
+  display:flex;
+  gap:0;
+  max-width:720px;
+  margin-bottom:24px;
+}
+.search-bar-row input{
+  flex:1;
+  border-top-right-radius:0;
+  border-bottom-right-radius:0;
+  border-right:none;
+  padding:14px 20px;
+  font-size:14px;
+}
+.search-btn{
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--font-body);font-size:14px;font-weight:500;
+  padding:0 24px;
+  background:var(--color-text-primary);
+  color:#fff;
+  border:1px solid var(--color-text-primary);
+  border-top-right-radius:var(--radius-input);
+  border-bottom-right-radius:var(--radius-input);
+  cursor:pointer;
+  white-space:nowrap;
+}
+.search-btn:hover{opacity:0.9;}
+
+.results-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;
+}
+.results-meta p{font-size:14px;color:var(--color-text-secondary);margin:0;}
+
+.no-results{
+  color:var(--color-text-secondary);
+  font-size:14px;
+  padding:40px 0;
+  text-align:center;
+  grid-column:1/-1;
+}
+
+/* -- product grid -- */
+.search-prod-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:20px;
+}
+.search-prod-card{
+  background:var(--color-surface);
+  border:1px solid var(--color-tertiary);
+  border-radius:var(--radius-card);
+  overflow:hidden;
+}
+.search-prod-image{position:relative;background:var(--color-secondary);}
+.search-prod-image img{width:100%;height:190px;object-fit:cover;}
+.search-prod-image .wishlist{
+  position:absolute;top:12px;right:12px;
+  width:32px;height:32px;border-radius:50%;background:var(--color-surface);
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+  box-shadow:0 2px 8px rgba(43,30,36,0.12);
+}
+.search-prod-body{padding:14px 16px 18px;}
+.search-prod-cat{
+  font-size:11px;text-transform:uppercase;letter-spacing:0.04em;
+  color:var(--color-text-secondary);margin:0 0 6px;
+}
+.search-prod-name{font-family:var(--font-display);font-size:16px;margin:0 0 6px;}
+.search-prod-rating{font-size:12px;color:var(--color-text-secondary);margin-bottom:10px;}
+.search-prod-rating .stars{color:var(--color-primary-strong);}
+.search-prod-price-row{display:flex;align-items:center;justify-content:space-between;}
+.search-prod-price{font-size:15px;font-weight:600;}
+.search-prod-price .old{
+  font-size:12px;color:var(--color-text-secondary);
+  text-decoration:line-through;font-weight:400;margin-left:6px;
+}
+.prod-cart{
+  width:32px;height:32px;border-radius:50%;background:var(--color-secondary);
+  display:flex;align-items:center;justify-content:center;font-size:13px;border:none;cursor:pointer;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1100px){
+  .search-prod-grid{grid-template-columns:repeat(3, 1fr);}
+}
+
+@media (max-width:900px){
+  .search-layout{grid-template-columns:1fr;}
+  .search-aside{
+    position:static;height:auto;
+    border-right:none;border-bottom:1px solid var(--color-tertiary);
+    padding:20px;
+  }
+  .search-main{padding:24px 20px 48px;}
+  .search-prod-grid{grid-template-columns:repeat(2, 1fr);}
+}
+
+@media (max-width:520px){
+  .search-prod-grid{grid-template-columns:1fr;}
+  .search-bar-row{flex-direction:column;}
+  .search-bar-row input{
+    border-radius:var(--radius-input);border-right:1px solid var(--color-tertiary);
+  }
+  .search-btn{
+    border-radius:var(--radius-input);
+    padding:12px 0;justify-content:center;
+  }
+}
