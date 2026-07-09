@@ -78,8 +78,6 @@ Rough order — each step builds on the last, so it's fine to go one at a time.
 ### 1. Finish the core storefront
 - [ ] Shop / full product listing page with filters (category, price, rating)
 - [ ] Wire up `product-view.html` to real product data instead of static placeholder content
-- [ ] Cart page + cart icon count that actually updates
-- [ ] Wishlist page (the heart icons currently do nothing)
 
 ### 2. Make it dynamic
 - [ ] Move product/category data out of hardcoded HTML into a JSON file or small backend, and render pages from it
@@ -87,7 +85,6 @@ Rough order — each step builds on the last, so it's fine to go one at a time.
 - [ ] Connect `my-profile.html` to real user/order data
 
 ### 3. Admin panel
-- [ ] Make sidebar nav links (Orders, Products, Customers, Categories, Admins) go to real pages instead of `#`
 - [ ] Add/edit/delete product forms
 - [ ] Order status updates (Packing → Delivered → Returned) from the dashboard
 - [ ] Basic auth/role protection so `admin.html` isn't publicly reachable
