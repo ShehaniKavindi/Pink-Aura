@@ -1,226 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PiNK AURA — Admin Dashboard</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/admin.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PiNK AURA — Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/admin.css">
 </head>
-
 <body class="admin-body">
 
-    <div class="admin-layout">
+<div class="admin-layout">
 
-        <!-- SIDEBAR -->
-        <aside class="admin-sidebar">
-            <div class="admin-brand">
-                <span class="admin-mark"></span>
-                <div class="admin-logo">PiNK <span>AURA</span></div>
-                <div class="admin-logo-sub">Admin panel</div>
-            </div>
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <span class="admin-mark"></span>
+      <div class="admin-logo">PiNK <span>AURA</span></div>
+      <div class="admin-logo-sub">Admin panel</div>
+    </div>
 
-            <nav class="admin-nav">
-                <div class="admin-nav-group">
-                    <p class="admin-nav-label">Overview</p>
-                    <a href="admin.html" class="admin-nav-link active">
-                        <span class="admin-nav-icon">&#9638;</span> Dashboard
-                    </a>
-                </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-group">
+        <p class="admin-nav-label">Overview</p>
+        <button class="admin-nav-link active" data-section="dashboard">
+          <span class="admin-nav-icon">&#9638;</span> Dashboard
+        </button>
+      </div>
 
-                <div class="admin-nav-group">
-                    <p class="admin-nav-label">Manage</p>
-                    <a href="#" class="admin-nav-link">
-                        <span class="admin-nav-icon">&#128203;</span> Orders
-                    </a>
-                    <a href="#" class="admin-nav-link">
-                        <span class="admin-nav-icon">&#128230;</span> Products
-                    </a>
-                    <a href="#" class="admin-nav-link">
-                        <span class="admin-nav-icon">&#128100;</span> Customers
-                    </a>
-                    <a href="#" class="admin-nav-link">
-                        <span class="admin-nav-icon">&#9776;</span> Categories
-                    </a>
-                    <a href="#" class="admin-nav-link">
-                        <span class="admin-nav-icon">&#128737;</span> Admins
-                    </a>
-                </div>
+      <div class="admin-nav-group">
+        <p class="admin-nav-label">Products</p>
+        <button class="admin-nav-link" data-section="product-add">
+          <span class="admin-nav-icon">&#10133;</span> Add new product
+        </button>
+        <button class="admin-nav-link" data-section="product-manage">
+          <span class="admin-nav-icon">&#128230;</span> Manage products
+        </button>
+        <button class="admin-nav-link" data-section="stock-add">
+          <span class="admin-nav-icon">&#128203;</span> Add new stock
+        </button>
+      </div>
 
-                <div class="admin-nav-group">
-                    <p class="admin-nav-label">System</p>
-                    <a href="my-profile.html" class="admin-nav-link">
-                        <span class="admin-nav-icon">&#9881;</span> Profile
-                    </a>
-                </div>
-            </nav>
+      <div class="admin-nav-group">
+        <p class="admin-nav-label">Manage</p>
+        <button class="admin-nav-link" data-section="orders">
+          <span class="admin-nav-icon">&#128179;</span> Orders
+        </button>
+        <button class="admin-nav-link" data-section="customers">
+          <span class="admin-nav-icon">&#128100;</span> Customers
+        </button>
+        <button class="admin-nav-link" data-section="categories">
+          <span class="admin-nav-icon">&#9776;</span> Categories
+        </button>
+        <button class="admin-nav-link" data-section="admins">
+          <span class="admin-nav-icon">&#128737;</span> Admins
+        </button>
+      </div>
 
-            <div class="admin-user">
-                <div class="admin-avatar">P</div>
-                <div class="admin-user-info">
-                    <p class="admin-user-name">pinkaura</p>
-                    <p class="admin-user-role">Super admin</p>
-                </div>
-                <button class="admin-logout" aria-label="Log out">&#10132;</button>
-            </div>
-        </aside>
+      <div class="admin-nav-group">
+        <p class="admin-nav-label">System</p>
+        <button class="admin-nav-link" data-section="profile">
+          <span class="admin-nav-icon">&#9881;</span> Profile
+        </button>
+      </div>
+    </nav>
 
-        <!-- MAIN -->
-        <main class="admin-main">
+    <div class="admin-user">
+      <div class="admin-avatar">P</div>
+      <div class="admin-user-info">
+        <p class="admin-user-name">pinkaura</p>
+        <p class="admin-user-role">Super admin</p>
+      </div>
+      <button class="admin-logout" aria-label="Log out">&#10132;</button>
+    </div>
+  </aside>
 
-            <header class="admin-header">
-                <div>
-                    <h1 class="admin-title">Dashboard</h1>
-                    <p class="admin-subtitle">Overview &mdash; July 2026</p>
-                </div>
-                <div class="admin-chip">
+  <!-- MAIN -->
+  <div class="admin-content-wrap">
+
+    <!-- TOPBAR -->
+    <header class="admin-topbar">
+      <div class="admin-topbar-right">
+        <div class="admin-datetime">
+          <span id="adminDate">&mdash;</span>
+          <span class="admin-dot-sep">&middot;</span>
+          <span id="adminTime">&mdash;</span>
+        </div>
+        <div class="admin-chip">
                     <span class="admin-chip-avatar">P</span>
                     <span class="admin-chip-name">pinkaura</span>
                 </div>
-            </header>
+      </div>
+    </header>
 
-            <!-- STAT CARDS -->
-            <section class="admin-stats">
-                <div class="admin-stat-card admin-stat-revenue">
-                    <p class="admin-stat-label">Total revenue</p>
-                    <p class="admin-stat-value">Rs 128,450.00</p>
-                    <p class="admin-stat-note">from placed orders</p>
-                </div>
-                <div class="admin-stat-card admin-stat-orders">
-                    <p class="admin-stat-label">Orders</p>
-                    <p class="admin-stat-value">46</p>
-                    <p class="admin-stat-note">total orders</p>
-                </div>
-                <div class="admin-stat-card admin-stat-customers">
-                    <p class="admin-stat-label">Customers</p>
-                    <p class="admin-stat-value">312</p>
-                    <p class="admin-stat-note">registered accounts</p>
-                </div>
-                <div class="admin-stat-card admin-stat-pending">
-                    <p class="admin-stat-label">Pending orders</p>
-                    <p class="admin-stat-value">7</p>
-                    <p class="admin-stat-note admin-stat-note-alert">needs attention</p>
-                </div>
-            </section>
+    <main class="admin-main">
 
-            <!-- ORDERS + ACTIVITY -->
-            <section class="admin-panels">
+      <!-- ================= DASHBOARD ================= -->
+      <section class="content-section active" id="section-dashboard">
+        <h1 class="admin-page-title">Dashboard</h1>
 
-                <div class="admin-panel admin-panel-orders">
-                    <div class="admin-panel-head">
-                        <h2>Recent orders</h2>
-                        <a href="#" class="link">View all &rarr;</a>
-                    </div>
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Order</th>
-                                <th>Customer</th>
-                                <th>Amount</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>#134</td>
-                                <td>Sanduni Perera</td>
-                                <td>Rs 2,398.00</td>
-                                <td><span class="admin-badge admin-badge-packing">Packing</span></td>
-                            </tr>
-                            <tr>
-                                <td>#133</td>
-                                <td>Dilki Fernando</td>
-                                <td>Rs 1,197.00</td>
-                                <td><span class="admin-badge admin-badge-delivered">Delivered</span></td>
-                            </tr>
-                            <tr>
-                                <td>#132</td>
-                                <td>Thivanka Silva</td>
-                                <td>Rs 3,594.00</td>
-                                <td><span class="admin-badge admin-badge-returned">Returned</span></td>
-                            </tr>
-                            <tr>
-                                <td>#131</td>
-                                <td>Shehani Kavindi</td>
-                                <td>Rs 899.00</td>
-                                <td><span class="admin-badge admin-badge-packing">Packing</span></td>
-                            </tr>
-                            <tr>
-                                <td>#130</td>
-                                <td>Nethmi Wickrama</td>
-                                <td>Rs 1,796.00</td>
-                                <td><span class="admin-badge admin-badge-delivered">Delivered</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+        <div class="admin-stats">
+          <div class="admin-stat-card stat-a">
+            <p class="admin-stat-label">Total revenue</p>
+            <p class="admin-stat-value">Rs 128,450.00</p>
+            <p class="admin-stat-note">from placed orders</p>
+          </div>
+          <div class="admin-stat-card stat-b">
+            <p class="admin-stat-label">Total products</p>
+            <p class="admin-stat-value" id="statProductCount">0</p>
+            <p class="admin-stat-note">across all categories</p>
+          </div>
+          <div class="admin-stat-card stat-c">
+            <p class="admin-stat-label">Orders</p>
+            <p class="admin-stat-value">46</p>
+            <p class="admin-stat-note">total orders</p>
+          </div>
+          <div class="admin-stat-card stat-d">
+            <p class="admin-stat-label">Low stock alerts</p>
+            <p class="admin-stat-value" id="statLowStockCount">0</p>
+            <p class="admin-stat-note">needs restocking</p>
+          </div>
+        </div>
 
-                <div class="admin-panel admin-panel-activity">
-                    <div class="admin-panel-head">
-                        <h2>Activity</h2>
-                        <a href="#" class="link">Clear</a>
-                    </div>
-                    <ul class="admin-activity-list">
-                        <li><span class="admin-dot"></span> New order #134 placed by Sanduni Perera <span
-                                class="admin-time">Recent</span></li>
-                        <li><span class="admin-dot"></span> New order #133 placed by Dilki Fernando <span
-                                class="admin-time">Recent</span></li>
-                        <li><span class="admin-dot"></span> New order #132 placed by Thivanka Silva <span
-                                class="admin-time">Recent</span></li>
-                        <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Rose Clay Mask (4 left)
-                            <span class="admin-time">Now</span></li>
-                        <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Glow Sunscreen SPF 50 (2
-                            left) <span class="admin-time">Now</span></li>
-                        <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Vitamin C Serum (3 left)
-                            <span class="admin-time">Now</span></li>
-                    </ul>
-                </div>
+        <div class="admin-panels">
+          <div class="admin-panel">
+            <div class="admin-panel-head">
+              <h2>Low stock products</h2>
+              <span class="pill">Threshold: 5 units</span>
+            </div>
+            <ul class="admin-mini-list" id="lowStockList"></ul>
+          </div>
 
-            </section>
+          <div class="admin-panel">
+            <div class="admin-panel-head">
+              <h2>Best selling products</h2>
+              <span class="link">View all &rarr;</span>
+            </div>
+            <ul class="admin-mini-list" id="bestSellerList"></ul>
+          </div>
 
-            <!-- TOP PRODUCTS -->
-            <section class="admin-panel admin-panel-top-products" style="padding: 20px;">
-                <div class="admin-panel-head">
-                    <h2>Top products</h2>
-                    <a href="#" class="link">View all &rarr;</a>
-                </div>
-                <div class="admin-top-products-row">
-                    <div class="admin-top-product">
-                        <div class="admin-thumb">&#128230;</div>
-                        <div>
-                            <p class="admin-tp-name">Vitamin C serum</p>
-                            <p class="admin-tp-meta">3 in stock &middot; Serums</p>
-                        </div>
-                        <p class="admin-tp-price">Rs 899.00</p>
-                    </div>
-                    <div class="admin-top-product">
-                        <div class="admin-thumb">&#128230;</div>
-                        <div>
-                            <p class="admin-tp-name">Hydrating moisturizer</p>
-                            <p class="admin-tp-meta">6 in stock &middot; Moisturizers</p>
-                        </div>
-                        <p class="admin-tp-price">Rs 699.00</p>
-                    </div>
-                    <div class="admin-top-product">
-                        <div class="admin-thumb">&#128230;</div>
-                        <div>
-                            <p class="admin-tp-name">Rose clay mask</p>
-                            <p class="admin-tp-meta">4 in stock &middot; Masks</p>
-                        </div>
-                        <p class="admin-tp-price">Rs 499.00</p>
-                    </div>
-                </div>
-            </section>
+          <div class="admin-panel admin-panel-pie">
+            <div class="admin-panel-head">
+              <h2>Products by category</h2>
+            </div>
+            <div class="pie-wrap">
+              <div class="pie-chart" id="pieChart"></div>
+              <div class="pie-legend" id="pieLegend"></div>
+            </div>
+          </div>
+        </div>
 
-        </main>
+        <div class="admin-panels-secondary">
+          <div class="admin-panel admin-panel-orders">
+            <div class="admin-panel-head">
+              <h2>Recent orders</h2>
+              <a href="#" class="link">View all &rarr;</a>
+            </div>
+            <table class="admin-table">
+              <thead>
+                <tr><th>Order</th><th>Customer</th><th>Amount</th><th>Status</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#134</td><td>Sanduni Perera</td><td>Rs 2,398.00</td>
+                  <td><span class="admin-badge admin-badge-packing">Packing</span></td>
+                </tr>
+                <tr>
+                  <td>#133</td><td>Dilki Fernando</td><td>Rs 1,197.00</td>
+                  <td><span class="admin-badge admin-badge-delivered">Delivered</span></td>
+                </tr>
+                <tr>
+                  <td>#132</td><td>Thivanka Silva</td><td>Rs 3,594.00</td>
+                  <td><span class="admin-badge admin-badge-returned">Returned</span></td>
+                </tr>
+                <tr>
+                  <td>#131</td><td>Shehani Kavindi</td><td>Rs 899.00</td>
+                  <td><span class="admin-badge admin-badge-packing">Packing</span></td>
+                </tr>
+                <tr>
+                  <td>#130</td><td>Nethmi Wickrama</td><td>Rs 1,796.00</td>
+                  <td><span class="admin-badge admin-badge-delivered">Delivered</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="admin-panel admin-panel-activity">
+            <div class="admin-panel-head">
+              <h2>Activity</h2>
+              <a href="#" class="link">Clear</a>
+            </div>
+            <ul class="admin-activity-list">
+              <li><span class="admin-dot"></span> New order #134 placed by Sanduni Perera <span class="admin-time">Recent</span></li>
+              <li><span class="admin-dot"></span> New order #133 placed by Dilki Fernando <span class="admin-time">Recent</span></li>
+              <li><span class="admin-dot"></span> New order #132 placed by Thivanka Silva <span class="admin-time">Recent</span></li>
+              <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Rose Clay Mask (4 left) <span class="admin-time">Now</span></li>
+              <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Glow Sunscreen SPF 50 (2 left) <span class="admin-time">Now</span></li>
+              <li><span class="admin-dot admin-dot-alert"></span> Low stock &ndash; Vitamin C Serum (3 left) <span class="admin-time">Now</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ADD NEW PRODUCT ================= -->
+      <section class="content-section" id="section-product-add">
+        <h1 class="admin-page-title">Add new product</h1>
+        <div class="admin-panel admin-form-panel">
+          <form onsubmit="event.preventDefault();">
+            <div class="form-row">
+              <div class="form-field">
+                <label for="pName">Product name</label>
+                <input type="text" id="pName" placeholder="e.g. Vitamin C Serum">
+              </div>
+              <div class="form-field">
+                <label for="pCategory">Category</label>
+                <select id="pCategory">
+                  <option>Skincare</option>
+                  <option>Makeup</option>
+                  <option>Hair care</option>
+                  <option>Nail care</option>
+                  <option>Fragrance</option>
+                  <option>Bath &amp; body</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-field">
+                <label for="pPrice">Price (Rs)</label>
+                <input type="text" id="pPrice" placeholder="899">
+              </div>
+              <div class="form-field">
+                <label for="pStock">Initial stock</label>
+                <input type="text" id="pStock" placeholder="20">
+              </div>
+            </div>
+            <div class="form-field">
+              <label for="pDesc">Description</label>
+              <textarea id="pDesc" rows="4" placeholder="Short product description..."></textarea>
+            </div>
+            <div class="form-field">
+              <label for="pImage">Product image</label>
+              <input type="text" id="pImage" placeholder="Upload not wired yet — paste an image URL for now">
+            </div>
+            <button type="submit" class="btn">Save product</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= MANAGE PRODUCTS ================= -->
+      <section class="content-section" id="section-product-manage">
+        <h1 class="admin-page-title">Manage products</h1>
+        <div class="admin-panel">
+          <table class="admin-table">
+            <thead>
+              <tr><th>Product</th><th>Category</th><th>Price</th><th>Stock</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="manageProductsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= ADD NEW STOCK ================= -->
+      <section class="content-section" id="section-stock-add">
+        <h1 class="admin-page-title">Add new stock</h1>
+        <div class="admin-panel admin-form-panel">
+          <form onsubmit="event.preventDefault(); document.getElementById('stockConfirm').style.display='block';">
+            <div class="form-field">
+              <label for="stockProduct">Product</label>
+              <select id="stockProduct"></select>
+            </div>
+            <div class="form-field">
+              <label for="stockQty">Quantity to add</label>
+              <input type="text" id="stockQty" placeholder="e.g. 25">
+            </div>
+            <button type="submit" class="btn">Update stock</button>
+            <p class="form-confirm" id="stockConfirm">Stock updated &mdash; not yet connected to a backend, this is a UI stub.</p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= ORDERS ================= -->
+      <section class="content-section" id="section-orders">
+        <h1 class="admin-page-title">Orders</h1>
+        <div class="admin-panel">
+          <table class="admin-table">
+            <thead><tr><th>Order</th><th>Customer</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>#134</td><td>Sanduni Perera</td><td>Rs 2,398.00</td><td><span class="admin-badge admin-badge-packing">Packing</span></td></tr>
+              <tr><td>#133</td><td>Dilki Fernando</td><td>Rs 1,197.00</td><td><span class="admin-badge admin-badge-delivered">Delivered</span></td></tr>
+              <tr><td>#132</td><td>Thivanka Silva</td><td>Rs 3,594.00</td><td><span class="admin-badge admin-badge-returned">Returned</span></td></tr>
+              <tr><td>#131</td><td>Shehani Kavindi</td><td>Rs 899.00</td><td><span class="admin-badge admin-badge-packing">Packing</span></td></tr>
+              <tr><td>#130</td><td>Nethmi Wickrama</td><td>Rs 1,796.00</td><td><span class="admin-badge admin-badge-delivered">Delivered</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= CUSTOMERS ================= -->
+      <section class="content-section" id="section-customers">
+        <h1 class="admin-page-title">Customers</h1>
+        <div class="admin-panel">
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Orders</th><th>Total spent</th></tr></thead>
+            <tbody>
+              <tr><td>Sanduni Perera</td><td>sanduni.p@email.com</td><td>4</td><td>Rs 6,120.00</td></tr>
+              <tr><td>Dilki Fernando</td><td>dilki.f@email.com</td><td>2</td><td>Rs 2,494.00</td></tr>
+              <tr><td>Thivanka Silva</td><td>thivanka.s@email.com</td><td>6</td><td>Rs 9,880.00</td></tr>
+              <tr><td>Shehani Kavindi</td><td>shehani.k@email.com</td><td>1</td><td>Rs 899.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= CATEGORIES ================= -->
+      <section class="content-section" id="section-categories">
+        <h1 class="admin-page-title">Categories</h1>
+        <div class="admin-panel">
+          <table class="admin-table">
+            <thead><tr><th>Category</th><th>Products</th><th>Actions</th></tr></thead>
+            <tbody id="categoriesBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= ADMINS ================= -->
+      <section class="content-section" id="section-admins">
+        <h1 class="admin-page-title">Admins</h1>
+        <div class="admin-panel">
+          <table class="admin-table">
+            <thead><tr><th>Name</th><th>Role</th><th>Last active</th></tr></thead>
+            <tbody>
+              <tr><td>Shehani Kavindi</td><td>Super admin</td><td>Now</td></tr>
+              <tr><td>Nethmi Wickrama</td><td>Admin</td><td>2 hours ago</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= PROFILE ================= -->
+      <section class="content-section" id="section-profile">
+        <h1 class="admin-page-title">Profile</h1>
+        <div class="admin-panel admin-form-panel">
+          <form onsubmit="event.preventDefault();">
+            <div class="form-field">
+              <label for="profName">Name</label>
+              <input type="text" id="profName" value="Shehani Kavindi">
+            </div>
+            <div class="form-field">
+              <label for="profEmail">Email</label>
+              <input type="email" id="profEmail" value="shehani@pinkaura.com">
+            </div>
+            <div class="form-field">
+              <label for="profRole">Role</label>
+              <input type="text" id="profRole" value="Super admin" disabled>
+            </div>
+            <button type="submit" class="btn">Save changes</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+/* ---------- DATA ---------- */
+const productsData = [
+  { name:'Vitamin C Serum', category:'Skincare', price:899, stock:3, sales:128 },
+  { name:'Hydrating Moisturizer', category:'Skincare', price:699, stock:12, sales:96 },
+  { name:'Glow Sunscreen SPF 50', category:'Skincare', price:599, stock:2, sales:74 },
+  { name:'Rose Clay Mask', category:'Skincare', price:499, stock:4, sales:64 },
+  { name:'Soft-Focus Blur Foundation', category:'Makeup', price:1290, stock:15, sales:210 },
+  { name:'Velvet Kohl Eyeliner', category:'Makeup', price:450, stock:20, sales:58 },
+  { name:'Glass Tint Lip Oil', category:'Makeup', price:620, stock:8, sales:142 },
+  { name:'Silk Rice Shampoo', category:'Hair care', price:780, stock:18, sales:39 },
+  { name:'Shine Drop Hair Elixir', category:'Hair care', price:990, stock:9, sales:47 },
+  { name:'Jelly Coat Nail Lacquer', category:'Nail care', price:320, stock:25, sales:22 },
+  { name:'Aura Bloom Eau de Parfum', category:'Fragrance', price:2450, stock:6, sales:88 },
+  { name:'Whipped Cloud Body Wash', category:'Bath & body', price:650, stock:14, sales:31 }
+];
+
+/* ---------- SIDEBAR NAV SWITCHING ---------- */
+const navLinks = document.querySelectorAll('.admin-nav-link');
+const sections = document.querySelectorAll('.content-section');
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+    const target = link.dataset.section;
+    sections.forEach(sec => {
+      sec.classList.toggle('active', sec.id === `section-${target}`);
+    });
+  });
+});
+
+/* ---------- LIVE DATE / TIME ---------- */
+function updateClock(){
+  const now = new Date();
+  document.getElementById('adminDate').textContent = now.toLocaleDateString(undefined, { weekday:'short', day:'2-digit', month:'short', year:'numeric' });
+  document.getElementById('adminTime').textContent = now.toLocaleTimeString(undefined, { hour:'2-digit', minute:'2-digit' });
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+/* ---------- STAT CARDS ---------- */
+document.getElementById('statProductCount').textContent = productsData.length;
+document.getElementById('statLowStockCount').textContent = productsData.filter(p => p.stock <= 5).length;
+
+/* ---------- LOW STOCK LIST ---------- */
+const lowStockList = document.getElementById('lowStockList');
+const lowStock = productsData.filter(p => p.stock <= 5).sort((a,b) => a.stock - b.stock);
+lowStockList.innerHTML = lowStock.map(p => `
+  <li>
+    <span class="mini-list-name">${p.name}</span>
+    <span class="mini-list-meta">${p.category}</span>
+    <span class="admin-badge admin-badge-returned">${p.stock} left</span>
+  </li>
+`).join('') || '<li class="mini-list-empty">Nothing low on stock right now.</li>';
+
+/* ---------- BEST SELLERS LIST ---------- */
+const bestSellerList = document.getElementById('bestSellerList');
+const bestSellers = [...productsData].sort((a,b) => b.sales - a.sales).slice(0, 4);
+bestSellerList.innerHTML = bestSellers.map(p => `
+  <li>
+    <span class="mini-list-name">${p.name}</span>
+    <span class="mini-list-meta">${p.sales} sold</span>
+    <span class="mini-list-price">Rs ${p.price.toLocaleString()}</span>
+  </li>
+`).join('');
+
+/* ---------- PIE CHART (products by category, plain CSS conic-gradient) ---------- */
+const paletteHex = ['#F4B9CE', '#E58EAD', '#4A1E30', '#F3D6E2', '#8C7580', '#FBE7EE'];
+const counts = {};
+productsData.forEach(p => { counts[p.category] = (counts[p.category] || 0) + 1; });
+
+let cumulative = 0;
+const stops = [];
+const legendItems = [];
+Object.entries(counts).forEach(([cat, count], i) => {
+  const total = productsData.length;
+  const pct = (count / total) * 100;
+  const color = paletteHex[i % paletteHex.length];
+  stops.push(`${color} ${cumulative}% ${cumulative + pct}%`);
+  legendItems.push(`
+    <div class="pie-legend-item">
+      <span class="pie-dot" style="background:${color}"></span>
+      <span class="pie-legend-label">${cat}</span>
+      <span class="pie-legend-value">${count} &middot; ${Math.round(pct)}%</span>
     </div>
+  `);
+  cumulative += pct;
+});
+
+document.getElementById('pieChart').style.background = `conic-gradient(${stops.join(', ')})`;
+document.getElementById('pieLegend').innerHTML = legendItems.join('');
+
+/* ---------- MANAGE PRODUCTS TABLE ---------- */
+document.getElementById('manageProductsBody').innerHTML = productsData.map(p => `
+  <tr>
+    <td>${p.name}</td>
+    <td>${p.category}</td>
+    <td>Rs ${p.price.toLocaleString()}</td>
+    <td>${p.stock <= 5 ? `<span class="admin-badge admin-badge-returned">${p.stock}</span>` : p.stock}</td>
+    <td>
+      <button class="btn outline small" onclick="alert('Edit form not wired yet — UI stub.')">Edit</button>
+      <button class="btn outline small" onclick="alert('Delete not wired yet — UI stub.')">Delete</button>
+    </td>
+  </tr>
+`).join('');
+
+/* ---------- STOCK DROPDOWN ---------- */
+document.getElementById('stockProduct').innerHTML = productsData.map(p => `<option>${p.name}</option>`).join('');
+
+/* ---------- CATEGORIES TABLE ---------- */
+document.getElementById('categoriesBody').innerHTML = Object.entries(counts).map(([cat, count]) => `
+  <tr>
+    <td>${cat}</td>
+    <td>${count}</td>
+    <td>
+      <button class="btn outline small" onclick="alert('Edit category not wired yet — UI stub.')">Edit</button>
+    </td>
+  </tr>
+`).join('');
+</script>
 
 </body>
-
 </html>

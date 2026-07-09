@@ -287,7 +287,7 @@ nav.top {
     position: absolute;
     top: -4px;
     right: -4px;
-    background: var(--color-text-primary);
+    background: var(--color-primary-strong);
     color: #fff;
     font-size: 9px;
     width: 16px;
@@ -301,7 +301,7 @@ nav.top {
     position: absolute;
     top: -4px;
     right: -4px;
-    background: var(--color-text-primary);
+    background: var(--color-primary-strong);
     color: #fff;
     font-size: 9px;
     width: 16px;
