@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact us — PiNK AURA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/contact.css">
+</head>
+
+<body>
+
+  <nav class="top">
+    <div class="logo">PiNK <span>AURA</span></div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#">Shop</a>
+      <a href="category.html">Categories</a>
+      <a href="#">About us</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html" class="active">Contact</a>
+    </div>
+    <div class="nav-icons">
+      <div class="icon-btn" aria-label="Search">&#9906;</div>
+      <div class="icon-btn" aria-label="Account">&#128100;</div>
+      <button class="icon-btn" aria-label="Wishlist" data-wishlist-toggle>&#9825;<span
+          class="wishlist-count">0</span></button>
+      <button class="icon-btn" aria-label="Bag" data-bag-toggle>&#128722;<span class="bag-count">0</span></button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div class="wrap">
+      <div class="contact-badge">&#128172; We're here to help</div>
+      <h1>Reach out to our <em>care team</em> anytime</h1>
+      <p>Have a question about an order, a product, or anything else? Fill out the form below and we'll get back to
+        you shortly.</p>
+
+      <div class="contact-quick-pills" id="quickPills">
+        <button class="pill" type="button" data-reason="order">&#128230; Order issue</button>
+        <button class="pill" type="button" data-reason="product">&#10024; Product question</button>
+        <button class="pill" type="button" data-reason="shipping">&#128666; Shipping &amp; delivery</button>
+        <button class="pill" type="button" data-reason="other">&#128172; General feedback</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT CARD -->
+  <section>
+    <div class="wrap">
+      <div class="contact-card">
+
+        <!-- LEFT INFO PANEL -->
+        <div class="contact-info">
+          <p class="eyebrow">Customer support</p>
+          <h2>Got a question or concern? Let us know.</h2>
+          <p>Send a message directly to our support team and we'll get back to you as soon as possible.</p>
+
+          <div class="contact-info-list">
+            <div class="contact-info-item"><span class="icon">&#9200;</span> Usually responds within 1&ndash;2
+              business days</div>
+            <div class="contact-info-item"><span class="icon">&#128274;</span> Your message is private and secure
+            </div>
+            <div class="contact-info-item"><span class="icon">&#128100;</span> Sent under your account email</div>
+          </div>
+        </div>
+
+        <!-- RIGHT FORM PANEL -->
+        <div class="contact-form-panel">
+          <form id="contactForm">
+
+            <div class="contact-field">
+              <label for="contactEmail">Your email <span class="required">*</span></label>
+              <input type="email" id="contactEmail" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="contact-field">
+              <label for="contactReason">Reason <span class="required">*</span></label>
+              <select id="contactReason" name="reason" required>
+                <option value="" disabled selected>Select a reason</option>
+                <option value="order">Order issue</option>
+                <option value="product">Product question</option>
+                <option value="shipping">Shipping &amp; delivery</option>
+                <option value="returns">Returns &amp; refunds</option>
+                <option value="wholesale">Wholesale / collaboration</option>
+                <option value="other">General feedback</option>
+              </select>
+            </div>
+
+            <div class="contact-field">
+              <label for="contactMessage">Message <span class="required">*</span></label>
+              <textarea id="contactMessage" name="message" maxlength="1000"
+                placeholder="Describe your question or issue in detail..." required></textarea>
+              <div class="contact-field-foot">
+                <span>Be as specific as you can</span>
+                <span id="messageCount">0 / 1000</span>
+              </div>
+            </div>
+
+            <div class="contact-form-actions">
+              <button type="button" class="btn outline" id="clearBtn">Clear</button>
+              <button type="submit" class="btn">&#10148; Send message</button>
+            </div>
+
+            <div class="contact-success" id="contactSuccess">
+              &#10003; Thanks! Your message has been sent — we'll get back to you soon.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT DETAILS -->
+  <section class="contact-details">
+    <div class="wrap">
+      <h2 class="section-title">Other ways to reach us</h2>
+      <div class="contact-details-grid">
+
+        <div class="contact-detail-card">
+          <div class="contact-detail-icon">&#128205;</div>
+          <p class="contact-detail-label">Visit us</p>
+          <p class="contact-detail-value">14 Rosewater Lane<br>Maharagama, Sri Lanka</p>
+        </div>
+
+        <div class="contact-detail-card">
+          <div class="contact-detail-icon">&#128222;</div>
+          <p class="contact-detail-label">Call us</p>
+          <p class="contact-detail-value"><a href="tel:+94112345678">+94 11 234 5678</a><br><a
+              href="tel:+94712345678">+94 71 234 5678</a></p>
+        </div>
+
+        <div class="contact-detail-card">
+          <div class="contact-detail-icon">&#9993;</div>
+          <p class="contact-detail-label">Email us</p>
+          <p class="contact-detail-value"><a href="mailto:hello@pinkaura.lk">hello@pinkaura.lk</a><br><a
+              href="mailto:support@pinkaura.lk">support@pinkaura.lk</a></p>
+        </div>
+
+        <div class="contact-detail-card">
+          <div class="contact-detail-icon">&#128337;</div>
+          <p class="contact-detail-label">Business hours</p>
+          <p class="contact-detail-value">Mon&ndash;Fri, 9am&ndash;6pm<br>Sat, 10am&ndash;3pm</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo">PiNK <span style="color:var(--color-primary-strong);">AURA</span></div>
+    <div>&copy; 2026 PiNK AURA. All product photos are placeholders.</div>
+  </footer>
+
+  <!-- BAG DRAWER (shared — copied from index.html) -->
+  <div class="bag-overlay" id="bagOverlay" data-bag-close></div>
+  <div class="bag-drawer" id="bagModal" role="dialog" aria-modal="true" aria-labelledby="bagModalLabel">
+
+    <div class="bag-header">
+      <h2 class="bag-title" id="bagModalLabel">My <span>bag</span></h2>
+      <button type="button" class="bag-close" data-bag-close aria-label="Close bag">&#10005;</button>
+    </div>
+
+    <div class="bag-body" id="bagBody">
+      <!-- populated by bag.js -->
+    </div>
+
+    <div class="bag-footer">
+      <div class="bag-total-row">
+        <span class="bag-total-label">Total</span>
+        <span class="bag-total-amount" id="bagTotalAmount">Rs 0</span>
+      </div>
+      <a href="#" class="btn bag-checkout-btn">Checkout</a>
+    </div>
+
+  </div>
+  <!-- WISHLIST DRAWER (shared — copied from index.html) -->
+  <div class="wishlist-overlay" id="wishlistOverlay" data-wishlist-close></div>
+  <div class="wishlist-drawer" id="wishlistModal" role="dialog" aria-modal="true" aria-labelledby="wishlistModalLabel">
+
+    <div class="wishlist-header">
+      <h2 class="wishlist-title" id="wishlistModalLabel">My <span>wishlist</span></h2>
+      <button type="button" class="wishlist-close" data-wishlist-close aria-label="Close wishlist">&#10005;</button>
+    </div>
+
+    <div class="wishlist-body" id="wishlistBody">
+      <!-- populated by wishlist.js -->
+    </div>
+
+  </div>
+
+  <script src="assets/js/wishlist.js"></script>
+  <script src="assets/js/bag.js"></script>
+  <script>
+    const reasonSelect = document.getElementById('contactReason');
+    const messageField = document.getElementById('contactMessage');
+    const messageCount = document.getElementById('messageCount');
+    const contactForm = document.getElementById('contactForm');
+    const contactSuccess = document.getElementById('contactSuccess');
+    const clearBtn = document.getElementById('clearBtn');
+
+    /* ── Quick pills prefill the reason dropdown ── */
+    document.querySelectorAll('#quickPills .pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#quickPills .pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        reasonSelect.value = pill.dataset.reason;
+      });
+    });
+
+    /* ── Character counter ── */
+    messageField.addEventListener('input', () => {
+      messageCount.textContent = messageField.value.length + ' / 1000';
+    });
+
+    /* ── Clear / discard ── */
+    clearBtn.addEventListener('click', () => {
+      contactForm.reset();
+      messageCount.textContent = '0 / 1000';
+      contactSuccess.classList.remove('show');
+      document.querySelectorAll('#quickPills .pill').forEach(p => p.classList.remove('active'));
+    });
+
+    /* ── Submit ── */
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // TODO: send to process/contact.php
+      const data = {
+        email: document.getElementById('contactEmail').value,
+        reason: reasonSelect.value,
+        message: messageField.value
+      };
+      console.log('Contact form submitted:', data);
+      contactSuccess.classList.add('show');
+    });
+  </script>
+
+</body>
+
+</html>
