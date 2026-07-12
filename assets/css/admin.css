@@ -236,6 +236,10 @@
   display:none;
   margin-top:14px;font-size:13px;color:var(--color-primary-strong);
 }
+.field-hint{
+  font-size:11.5px;color:var(--color-text-secondary);
+  margin:6px 0 0;line-height:1.5;
+}
 
 /* ---------- ADD PRODUCT: two-column layout with live preview ---------- */
 .product-add-layout{
@@ -250,6 +254,59 @@
   position:sticky;
   top:16px;
 }
+
+/* ---------- VARIANT ROWS (size / shade / color) ---------- */
+.variant-rows{
+  display:flex;flex-direction:column;gap:10px;
+  margin-bottom:12px;
+}
+.variant-row{
+  display:grid;
+  grid-template-columns:auto 1fr 90px 80px 32px;
+  gap:8px;
+  align-items:center;
+}
+/* when there's no swatch (size rows), the row only has 4 columns */
+.variant-row:has(.variant-label-input:first-child){
+  grid-template-columns:1fr 90px 80px 32px;
+}
+.variant-swatch{
+  width:38px;height:38px;
+  padding:2px;
+  border:1px solid var(--color-tertiary);
+  border-radius:8px;
+  background:var(--color-surface);
+  cursor:pointer;
+}
+.variant-label-input,
+.variant-price-input,
+.variant-stock-input{
+  width:100%;
+  font-family:var(--font-body);
+  font-size:13px;
+  padding:9px 12px;
+  border:1px solid var(--color-tertiary);
+  border-radius:var(--radius-input);
+  background:var(--color-surface);
+  outline:none;
+}
+.variant-label-input:focus,
+.variant-price-input:focus,
+.variant-stock-input:focus{
+  border-color:var(--color-primary-strong);
+}
+.variant-remove-btn{
+  width:32px;height:32px;
+  border-radius:50%;
+  border:none;
+  background:var(--color-secondary);
+  color:var(--color-text-secondary);
+  cursor:pointer;
+  font-size:12px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.variant-remove-btn:hover{background:var(--color-primary);color:var(--color-text-on-primary);}
 
 /* -- image upload grid (max 4, thumbnails, remove x, add +) -- */
 .image-upload-grid{
@@ -310,6 +367,26 @@
   color:var(--color-text-secondary);margin:0 0 6px;
 }
 .live-prod-name{font-family:var(--font-display);font-size:17px;margin:0 0 10px;}
+
+/* -- variant chips inside the live preview card -- */
+.live-prod-variants{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:12px;
+}
+.preview-size-pill{
+  font-size:11px;font-weight:500;
+  padding:4px 10px;
+  border-radius:var(--radius-pill);
+  border:1px solid var(--color-tertiary);
+  color:var(--color-text-secondary);
+}
+.preview-swatch{
+  width:20px;height:20px;
+  border-radius:50%;
+  border:1px solid rgba(43,30,36,0.15);
+  display:inline-block;
+}
+
 .live-prod-price-row{display:flex;align-items:center;justify-content:space-between;}
 .live-prod-price{font-size:16px;font-weight:600;}
 .live-prod-price-row .prod-cart{
@@ -359,4 +436,9 @@
   .form-row{grid-template-columns:1fr;}
   .product-add-layout{grid-template-columns:1fr;}
   .live-preview-panel{position:static;}
+  .variant-row,
+  .variant-row:has(.variant-label-input:first-child){
+    grid-template-columns:1fr;
+  }
+  .variant-swatch{width:100%;}
 }
