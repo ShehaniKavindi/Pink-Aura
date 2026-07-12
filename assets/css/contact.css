@@ -74,7 +74,8 @@
 
 /* left info panel */
 .contact-info {
-    background: linear-gradient(135deg, var(--color-primary-strong) 0%, var(--color-primary) 100%);
+    /* background-color: var(--color-primary-strong); */
+    background: linear-gradient(135deg, var(--color-text-on-primary) 40%, var(--color-text-primary) 100%);
     color: #fff;
     padding: 44px 40px;
     display: flex;
