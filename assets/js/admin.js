@@ -125,32 +125,47 @@ document.getElementById('categoriesBody').innerHTML = Object.entries(counts).map
   </tr>
 `).join('');
 
-/* ---------- ADD NEW PRODUCT: category taxonomy + sub-category population ---------- */
-const categoryTaxonomy = {
-  'Makeup': ['Face', 'Eyes', 'Lips'],
-  'Skincare': ['Cleansers', 'Serums', 'Moisturizers'],
-  'Hair care': ['Shampoo', 'Hair oil', 'Styling'],
-  'Nail care': ['Polish', 'Cuticle care', 'Press-ons'],
-  'Fragrance': ['Eau de parfum', 'Body mist', 'Rollerball'],
-  'Bath & body': ['Body wash', 'Body butter', 'Body scrub'],
-  'Tools & accessories': ['General'],
-  'Sets & gifts': ['General']
-};
 
-const pMainCategory = document.getElementById('pMainCategory');
-const pSubCategory = document.getElementById('pSubCategory');
 
-pMainCategory.innerHTML = Object.keys(categoryTaxonomy).map(cat => `<option>${cat}</option>`).join('');
-
-function populateSubCategories() {
-  const subs = categoryTaxonomy[pMainCategory.value] || [];
-  pSubCategory.innerHTML = subs.map(s => `<option>${s}</option>`).join('');
+function loadSubCategories(){
+  let mainCategoryID = document.getElementById('pMainCategory').value;
+  var request = new XMLHttpRequest();
+  request.onreadystatechange = function(){
+    if (request.status == 200 && request.readyState == 4) {
+      document.getElementById('pSubCategory').innerHTML = request.responseText;
+    }
+  }
+  request.open("GET", "process/loadSubCategories.php?id=" + mainCategoryID, true);
+  request.send();
 }
-populateSubCategories();
-pMainCategory.addEventListener('change', () => {
-  populateSubCategories();
-  updateLivePreview();
-});
+document.addEventListener('DOMContentLoaded', loadSubCategories);
+
+/* ---------- ADD NEW PRODUCT: category taxonomy + sub-category population ---------- */
+// const categoryTaxonomy = {
+//   'Makeup': ['Face', 'Eyes', 'Lips'],
+//   'Skincare': ['Cleansers', 'Serums', 'Moisturizers'],
+//   'Hair care': ['Shampoo', 'Hair oil', 'Styling'],
+//   'Nail care': ['Polish', 'Cuticle care', 'Press-ons'],
+//   'Fragrance': ['Eau de parfum', 'Body mist', 'Rollerball'],
+//   'Bath & body': ['Body wash', 'Body butter', 'Body scrub'],
+//   'Tools & accessories': ['General'],
+//   'Sets & gifts': ['General']
+// };
+
+// const pMainCategory = document.getElementById('pMainCategory');
+// const pSubCategory = document.getElementById('pSubCategory');
+
+// pMainCategory.innerHTML = Object.keys(categoryTaxonomy).map(cat => `<option>${cat}</option>`).join('');
+
+// function populateSubCategories() {
+//   const subs = categoryTaxonomy[pMainCategory.value] || [];
+//   pSubCategory.innerHTML = subs.map(s => `<option>${s}</option>`).join('');
+// }
+// populateSubCategories();
+// pMainCategory.addEventListener('change', () => {
+//   populateSubCategories();
+//   updateLivePreview();
+// });
 
 /* ---------- ADD NEW PRODUCT: variant type (none / size / shade / color) ---------- */
 const pVariantType = document.getElementById('pVariantType');
