@@ -262,13 +262,13 @@
 }
 .variant-row{
   display:grid;
-  grid-template-columns:auto 1fr 90px 80px 32px;
+  grid-template-columns:auto 1fr 90px 80px 38px 32px;
   gap:8px;
   align-items:center;
 }
-/* when there's no swatch (size rows), the row only has 4 columns */
-.variant-row:has(.variant-label-input:first-child){
-  grid-template-columns:1fr 90px 80px 32px;
+/* when there's no swatch (size rows), the row has one fewer column */
+.variant-row.no-swatch{
+  grid-template-columns:1fr 90px 80px 38px 32px;
 }
 .variant-swatch{
   width:38px;height:38px;
@@ -307,6 +307,32 @@
   flex-shrink:0;
 }
 .variant-remove-btn:hover{background:var(--color-primary);color:var(--color-text-on-primary);}
+
+/* -- per-variant image slot (optional shade/color-specific photo) -- */
+.variant-image-slot{
+  position:relative;
+  width:38px;height:38px;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px dashed var(--color-tertiary);
+  background:var(--color-secondary);
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.variant-image-slot:hover{background:var(--color-tertiary);}
+.variant-image-slot img{width:100%;height:100%;object-fit:cover;display:block;}
+.variant-image-plus{font-size:16px;line-height:1;color:var(--color-text-secondary);}
+.variant-image-remove{
+  position:absolute;top:1px;right:1px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--color-surface);
+  border:none;color:var(--color-text-secondary);
+  font-size:8px;padding:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 1px 3px rgba(43,30,36,0.18);
+}
+.variant-image-remove:hover{background:var(--color-primary);color:var(--color-text-on-primary);}
 
 /* -- image upload grid (max 4, thumbnails, remove x, add +) -- */
 .image-upload-grid{
@@ -437,8 +463,9 @@
   .product-add-layout{grid-template-columns:1fr;}
   .live-preview-panel{position:static;}
   .variant-row,
-  .variant-row:has(.variant-label-input:first-child){
+  .variant-row.no-swatch{
     grid-template-columns:1fr;
   }
   .variant-swatch{width:100%;}
+  .variant-image-slot{width:100%;}
 }

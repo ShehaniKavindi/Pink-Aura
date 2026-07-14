@@ -232,7 +232,7 @@
 
             <!-- FORM -->
             <div class="admin-panel admin-form-panel">
-              <form id="productForm" onsubmit="event.preventDefault();">
+              <form id="productForm" onsubmit="event.preventDefault(); saveProduct();">
 
                 <div class="form-row">
                   <div class="form-field">
@@ -290,6 +290,8 @@
                   <label id="variantSectionLabel">Sizes</label>
                   <div class="variant-rows" id="variantRows"></div>
                   <button type="button" class="btn outline small" id="addVariantBtn">+ Add another</button>
+                  <p class="field-hint">Tap the small square on a row to attach that shade/color's own photo (optional — falls back to the general product images below).</p>
+                  <input type="file" id="variantImageFileInput" accept="image/*" hidden>
                 </div>
 
                 <div class="form-field">
@@ -317,6 +319,7 @@
                 </div>
 
                 <button type="submit" class="btn">Save product</button>
+                <p id="productConfirm" style="display:none;font-size:13px;margin-top:10px;"></p>
               </form>
             </div>
 
