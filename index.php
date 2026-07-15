@@ -65,38 +65,38 @@
     <div class="wrap">
       <h2 class="section-title">Shop by category</h2>
       <div class="cat-grid">
-        <a class="cat-card" href="category.html">
+        <a class="cat-card" href="category.php">
           <img src="assets/images/site-images/moisturizer.jpg" alt="Moisturizers — placeholder">
           <div class="cat-body">
             <p class="cat-name">Moisturizers</p>
             <p class="cat-count">18 products</p>
           </div>
         </a>
-        <a class="cat-card" href="category.html">
+        <a class="cat-card" href="category.php">
           <img src="assets/images/site-images/facemask.jpg" alt="Masks — placeholder">
           <div class="cat-body">
             <p class="cat-name">Masks</p>
             <p class="cat-count">8 products</p>
           </div>
         </a>
-        <a class="cat-card" href="category.html">
+        <a class="cat-card" href="category.php">
           <img src="assets/images/site-images/cleanser.jpg" alt="Cleansers — placeholder">
           <div class="cat-body">
-            <p class="cat-name">Cleansers</p>
+            <p class="cat-name">Bath & Body</p>
             <p class="cat-count">12 products</p>
           </div>
         </a>
-        <a class="cat-card" href="category.html">
+        <a class="cat-card" href="category.php">
           <img src="assets/images/site-images/serum.jpg" alt="Serums — placeholder">
           <div class="cat-body">
             <p class="cat-name">Serums</p>
             <p class="cat-count">15 products</p>
           </div>
         </a>
-        <a class="cat-card" href="category.html">
+        <a class="cat-card" href="category.php">
           <img src="assets/images/site-images/sunscreen.jpg" alt="Sunscreen — placeholder">
           <div class="cat-body">
-            <p class="cat-name">Sunscreen</p>
+            <p class="cat-name">Skin Care</p>
             <p class="cat-count">10 products</p>
           </div>
         </a>
