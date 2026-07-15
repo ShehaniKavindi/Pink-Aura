@@ -420,6 +420,33 @@ function showToast(message, type = 'success') {
   }, 4000);
 }
 
+// ============== Reset form after a successful save ==========================
+function resetProductForm() {
+  document.getElementById('pTitle').value = '';
+  document.getElementById('pPrice').value = '';
+  document.getElementById('pStock').value = '';
+  document.getElementById('pDesc').value = '';
+  document.getElementById('pIngredients').value = '';
+  document.getElementById('pHowToUse').value = '';
+
+  pVariantType.value = 'none';
+  singlePriceStockRow.hidden = false;
+  variantSection.hidden = true;
+
+  variantRows.forEach(r => { if (r.imageUrl) URL.revokeObjectURL(r.imageUrl); });
+  variantRows = [];
+  variantRowsEl.innerHTML = ''; // variantCopy has no 'none' entry, so don't call renderVariantRows() here
+
+  uploadedImages.forEach(img => URL.revokeObjectURL(img.url));
+  uploadedImages = [];
+  renderImageUploadGrid();
+
+  pMainCategory.selectedIndex = 0;
+  loadSubCategories();
+
+  updateLivePreview();
+}
+
 // ============== Save product ==========================
 function saveProduct() {
   let subCategory = document.getElementById('pSubCategory');
@@ -536,6 +563,7 @@ function saveProduct() {
       let response = request.responseText;
       if (response.startsWith('success:')) {
         showToast('Product saved (ID #' + response.split(':')[1] + ').', 'success');
+        resetProductForm();
       } else {
         showToast('Error: ' + response, 'error');
       }

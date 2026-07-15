@@ -54,16 +54,20 @@ foreach ($variants as $i => $v) {
     $variant_ids_by_index[$i] = Database::$connection->insert_id;
 }
 
-// ---------- subcategory slug (used in filenames for both image blocks) ----------
-$subCat_slug_rs = Database::search("SELECT `slug` FROM `subcategories` WHERE `subcategory_id` = '".$subCat."' ");
-$subCat_slug_data = $subCat_slug_rs->fetch_assoc();
-$subCat_slug = $subCat_slug_data ? $subCat_slug_data['slug'] : 'general';
+// ---------- category slug (upload folder) + subcategory slug (used in filenames) ----------
+$slug_rs = Database::search("SELECT `subcategories`.`slug` AS `sub_slug`, `categories`.`slug` AS `cat_slug`
+                              FROM `subcategories`
+                              JOIN `categories` ON `categories`.`category_id` = `subcategories`.`category_id`
+                              WHERE `subcategories`.`subcategory_id` = '".$subCat."' ");
+$slug_data = $slug_rs->fetch_assoc();
+$subCat_slug = $slug_data ? $slug_data['sub_slug'] : 'general';
+$cat_slug = $slug_data ? $slug_data['cat_slug'] : 'general';
 
 $productNO = str_pad($product_id, 5, "0", STR_PAD_LEFT);
 $safeTitle = preg_replace('/[\\\\\/:*?"<>|]/', '', $title);
 $allowed = ['jpg', 'jpeg', 'png', 'webp'];
 
-$upload_dir = "../assets/images/products/";
+$upload_dir = "../assets/images/products/" . $cat_slug . "/";
 if (!is_dir($upload_dir)) {
     mkdir($upload_dir, 0755, true);
 }
@@ -83,7 +87,7 @@ if (!empty($_FILES['images']['name'][0])) {
         $dest = $upload_dir . $filename;
 
         if (move_uploaded_file($_FILES['images']['tmp_name'][$i], $dest)) {
-            $relative_path = "assets/images/products/" . $filename;
+            $relative_path = "assets/images/products/" . $cat_slug . "/" . $filename;
             $isPrimary = ($i === 0) ? 1 : 0;
             Database::iud("INSERT INTO `product_images`
                 (`product_id`,`variant_id`,`image_url`,`sort_order`,`is_primary`)
@@ -112,7 +116,7 @@ if (!empty($_FILES['variant_images']['name'])) {
         $dest = $upload_dir . $filename;
 
         if (move_uploaded_file($_FILES['variant_images']['tmp_name'][$index], $dest)) {
-            $relative_path = "assets/images/products/" . $filename;
+            $relative_path = "assets/images/products/" . $cat_slug . "/" . $filename;
             Database::iud("INSERT INTO `product_images`
                 (`product_id`,`variant_id`,`image_url`,`sort_order`,`is_primary`)
                 VALUES ('".$product_id."','".$variant_id."','".esc($relative_path)."','0','0')");
