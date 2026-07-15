@@ -229,6 +229,26 @@
     color: #fff;
 }
 
+/* -- swatch-style option pills (shade / color variant types) -- */
+.option-pill.swatch-pill {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    background: var(--pill-color, #F4B9CE);
+    border: 2px solid transparent;
+}
+
+.option-pill.swatch-pill:hover {
+    background: var(--pill-color, #F4B9CE);
+    /* override the text-pill hover which would tint it grey */
+}
+
+.option-pill.swatch-pill.active {
+    border-color: var(--color-primary-strong);
+    box-shadow: 0 0 0 2px var(--color-surface) inset;
+}
+
 /* ---------- QTY + ADD TO CART ---------- */
 .buy-row {
     display: flex;
@@ -270,6 +290,11 @@
     flex: 1;
     justify-content: center;
     padding: 14px 26px;
+}
+
+.buy-row .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .icon-btn.lg {
@@ -399,6 +424,23 @@
 .related-price {
     font-size: 14px;
     font-weight: 600;
+}
+
+/* ---------- NOT FOUND (bad or missing ?id=) ---------- */
+.not-found {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.not-found h1 {
+    font-family: var(--font-display);
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.not-found p {
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
 }
 
 /* ---------- RESPONSIVE ---------- */

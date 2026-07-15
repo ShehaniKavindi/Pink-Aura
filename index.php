@@ -140,6 +140,7 @@
         <a href="#" class="btn outline small">View all</a>
       </div>
       <div class="prod-grid">
+        
         <div class="prod-card">
           <div class="prod-image">
             <img src="https://placehold.co/320x300/F3D6E2/4A1E30?text=Vitamin+C+Serum"
@@ -204,6 +205,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>

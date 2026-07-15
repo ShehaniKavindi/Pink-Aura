@@ -1,3 +1,81 @@
+<?php
+include "includes/connection.php";
+Database::setUpConnection();
+
+/* ---------- PRODUCTS: one row per product, min variant price, primary image,
+   avg rating + review count (0 if no reviews yet), plus each variant's
+   label/hex so the card can show size pills or color swatches ---------- */
+$products_rs = Database::search("
+    SELECT
+        p.product_id,
+        p.title,
+        p.variant_type,
+        p.created_at,
+        c.name  AS category,
+        s.name  AS sub,
+        MIN(pv.price) AS price,
+        (SELECT pi.image_url FROM product_images pi
+            WHERE pi.product_id = p.product_id AND pi.is_primary = 1
+            LIMIT 1) AS image,
+        IFNULL((SELECT ROUND(AVG(r.rating)) FROM reviews r WHERE r.product_id = p.product_id), 0) AS rating,
+        (SELECT COUNT(*) FROM reviews r WHERE r.product_id = p.product_id) AS reviews,
+        (SELECT GROUP_CONCAT(CONCAT(pv2.label, '||', IFNULL(pv2.swatch_hex,'')) SEPARATOR ';;')
+            FROM product_variants pv2 WHERE pv2.product_id = p.product_id) AS variants_raw
+    FROM products p
+    JOIN subcategories s ON s.subcategory_id = p.subcategory_id
+    JOIN categories c ON c.category_id = s.category_id
+    LEFT JOIN product_variants pv ON pv.product_id = p.product_id
+    GROUP BY p.product_id
+    ORDER BY p.created_at DESC
+");
+
+$products = [];
+while ($row = $products_rs->fetch_assoc()) {
+    // parse "label||hex;;label||hex" into [{label, hex}, ...]
+    $variants = [];
+    if (!empty($row['variants_raw'])) {
+        foreach (explode(';;', $row['variants_raw']) as $pair) {
+            [$label, $hex] = array_pad(explode('||', $pair, 2), 2, '');
+            $variants[] = ['label' => $label, 'hex' => $hex];
+        }
+    }
+
+    $products[] = [
+        'id'          => (int) $row['product_id'],
+        'name'        => $row['title'],
+        'category'    => $row['category'],
+        'sub'         => $row['sub'],
+        'variantType' => $row['variant_type'], // 'none' | 'size' | 'shade' | 'color'
+        'variants'    => $variants,
+        'price'       => (float) $row['price'],
+        'oldPrice'    => 0, // no discount/compare-at-price column yet — wire up later if you add one
+        'rating'      => (int) $row['rating'],
+        'reviews'     => (int) $row['reviews'],
+        'image'       => $row['image'], // real relative path, or null if no primary image set
+        'createdAt'   => date('c', strtotime($row['created_at'])), // ISO 8601 — parses reliably in JS across browsers
+    ];
+}
+
+/* ---------- CATEGORIES + SUBCATEGORIES (drives the filter sidebar) ---------- */
+$cats_rs = Database::search("
+    SELECT c.category_id, c.name AS cat_name, s.name AS sub_name
+    FROM categories c
+    LEFT JOIN subcategories s ON s.category_id = c.category_id
+    ORDER BY c.category_id, s.name
+");
+
+$categoriesData = []; // [category_id => ['name' => ..., 'subs' => [...]]]
+while ($row = $cats_rs->fetch_assoc()) {
+    $cid = $row['category_id'];
+    if (!isset($categoriesData[$cid])) {
+        $categoriesData[$cid] = ['name' => $row['cat_name'], 'subs' => []];
+    }
+    if (!empty($row['sub_name'])) {
+        $categoriesData[$cid]['subs'][] = $row['sub_name'];
+    }
+}
+$categories = array_values($categoriesData); // re-index for a clean JS array
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +96,7 @@
     <div class="logo">PiNK <span>AURA</span></div>
     <div class="nav-links">
       <a href="index.html">Home</a>
-      <a href="search.html" class="active">Shop</a>
+      <a href="search.php" class="active">Shop</a>
       <a href="category.html">Categories</a>
       <a href="about.html">About us</a>
       <a href="blog.html">Blog</a>
@@ -92,7 +170,7 @@
 
     <div class="results-meta">
       <p id="resultsLabel">Showing all products</p>
-      <span class="pill" id="resultsCount">12 results</span>
+      <span class="pill" id="resultsCount">0 results</span>
     </div>
 
     <div class="search-prod-grid" id="prodGrid">
@@ -104,40 +182,18 @@
 
 <footer>
   <div class="logo">PiNK <span style="color:var(--color-primary-strong);">AURA</span></div>
-  <div>&copy; 2026 PiNK AURA. All product photos are placeholders.</div>
+  <div>&copy; 2026 PiNK AURA.</div>
 </footer>
 
 <script>
-/* ---------- CATEGORY DATA (drives the aside) ---------- */
-const categories = [
-  { name:'Makeup', subs:['Face','Eyes','Lips'] },
-  { name:'Skincare', subs:['Cleansers','Serums','Moisturizers'] },
-  { name:'Hair care', subs:['Shampoo','Hair oil','Styling'] },
-  { name:'Nail care', subs:['Polish','Cuticle care','Press-ons'] },
-  { name:'Fragrance', subs:['Eau de parfum','Body mist','Rollerball'] },
-  { name:'Bath & body', subs:['Body wash','Body butter','Body scrub'] },
-  { name:'Tools & accessories', subs:[] },
-  { name:'Sets & gifts', subs:[] }
-];
+/* ---------- CATEGORY DATA (drives the aside) — now pulled from the database ---------- */
+const categories = <?php echo json_encode($categories, JSON_UNESCAPED_UNICODE); ?>;
 
-/* ---------- DEMO PRODUCT DATA ---------- */
-const products = [
-  { name:'Vitamin C Serum', category:'Skincare', sub:'Serums', price:899, oldPrice:1199, rating:4, reviews:128, img:'F3D6E2/4A1E30' },
-  { name:'Hydrating Moisturizer', category:'Skincare', sub:'Moisturizers', price:699, oldPrice:999, rating:4, reviews:96, img:'F4B9CE/4A1E30' },
-  { name:'Glow Sunscreen SPF 50', category:'Skincare', sub:'Serums', price:599, oldPrice:799, rating:4, reviews:74, img:'FBE7EE/8C7580' },
-  { name:'Rose Clay Mask', category:'Skincare', sub:'Cleansers', price:499, oldPrice:699, rating:4, reviews:64, img:'E58EAD/FFFFFF' },
-  { name:'Soft-Focus Blur Foundation', category:'Makeup', sub:'Face', price:1290, oldPrice:1590, rating:5, reviews:210, img:'F3D6E2/4A1E30' },
-  { name:'Velvet Kohl Eyeliner', category:'Makeup', sub:'Eyes', price:450, oldPrice:0, rating:4, reviews:58, img:'F4B9CE/4A1E30' },
-  { name:'Glass Tint Lip Oil', category:'Makeup', sub:'Lips', price:620, oldPrice:790, rating:5, reviews:142, img:'FBE7EE/8C7580' },
-  { name:'Silk Rice Shampoo', category:'Hair care', sub:'Shampoo', price:780, oldPrice:0, rating:4, reviews:39, img:'E58EAD/FFFFFF' },
-  { name:'Shine Drop Hair Elixir', category:'Hair care', sub:'Hair oil', price:990, oldPrice:1290, rating:4, reviews:47, img:'F3D6E2/4A1E30' },
-  { name:'Jelly Coat Nail Lacquer', category:'Nail care', sub:'Polish', price:320, oldPrice:0, rating:4, reviews:22, img:'F4B9CE/4A1E30' },
-  { name:'Aura Bloom Eau de Parfum', category:'Fragrance', sub:'Eau de parfum', price:2450, oldPrice:2900, rating:5, reviews:88, img:'FBE7EE/8C7580' },
-  { name:'Whipped Cloud Body Wash', category:'Bath & body', sub:'Body wash', price:650, oldPrice:0, rating:4, reviews:31, img:'E58EAD/FFFFFF' }
-];
+/* ---------- PRODUCT DATA — now pulled from the database ---------- */
+const products = <?php echo json_encode($products, JSON_UNESCAPED_UNICODE); ?>;
 
 /* ---------- STATE ---------- */
-let state = { category:null, sub:null, query:'' };
+let state = { category:null, sub:null, query:'', sort:'', priceMin:null, priceMax:null };
 
 /* ---------- RENDER: ASIDE CATEGORY LIST ---------- */
 const catList = document.getElementById('catList');
@@ -193,19 +249,20 @@ function renderProducts(list){
 
   prodGrid.innerHTML = list.map(p => `
     <div class="search-prod-card">
-      <div class="search-prod-image">
-        <img src="https://placehold.co/320x260/${p.img}?text=${encodeURIComponent(p.name)}" alt="${p.name} — placeholder">
+      <a class="search-prod-image" href="product-view.php?id=${p.id}">
+        <img src="${p.image ? p.image : 'https://placehold.co/320x260/F3D6E2/4A1E30?text=' + encodeURIComponent(p.name)}" alt="${p.name}">
         <div class="wishlist">&#9825;</div>
-      </div>
+      </a>
       <div class="search-prod-body">
         <p class="search-prod-cat">${p.sub} &middot; ${p.category}</p>
-        <p class="search-prod-name">${p.name}</p>
+        <a class="search-prod-name" href="product-view.php?id=${p.id}">${p.name}</a>
         <div class="search-prod-rating">
           <span class="stars">${'&#9733;'.repeat(p.rating)}${'&#9734;'.repeat(5-p.rating)}</span> (${p.reviews})
         </div>
+        ${renderVariants(p)}
         <div class="search-prod-price-row">
           <div class="search-prod-price">
-            Rs ${p.price.toLocaleString()}
+            ${p.variantType !== 'none' ? 'From ' : ''}Rs ${p.price.toLocaleString()}
             ${p.oldPrice ? `<span class="old">Rs ${p.oldPrice.toLocaleString()}</span>` : ''}
           </div>
           <button class="prod-cart" aria-label="Add to cart">&#128722;</button>
@@ -213,6 +270,22 @@ function renderProducts(list){
       </div>
     </div>
   `).join('');
+}
+
+/* -- size pills for 'size' variants, color/shade circles for 'shade'/'color' -- */
+function renderVariants(p){
+  if(p.variantType === 'none' || !p.variants.length) return '';
+
+  if(p.variantType === 'size'){
+    return `<div class="search-prod-variants">
+      ${p.variants.map(v => `<span class="search-size-pill">${v.label}</span>`).join('')}
+    </div>`;
+  }
+
+  // shade / color
+  return `<div class="search-prod-variants">
+    ${p.variants.map(v => `<span class="search-swatch" style="background:${v.hex || '#F4B9CE'}" title="${v.label}"></span>`).join('')}
+  </div>`;
 }
 
 /* ---------- FILTER LOGIC (category + search text are live; sort/price are UI-ready stubs) ---------- */
@@ -234,7 +307,22 @@ function applyFilters(){
     );
   }
 
-  // Label
+  if(state.priceMin !== null){
+    list = list.filter(p => p.price >= state.priceMin);
+  }
+  if(state.priceMax !== null){
+    list = list.filter(p => p.price <= state.priceMax);
+  }
+
+  // sort — clone before sorting so we never mutate the master `products` array
+  if(state.sort){
+    list = [...list];
+    if(state.sort === 'price-asc') list.sort((a,b) => a.price - b.price);
+    else if(state.sort === 'price-desc') list.sort((a,b) => b.price - a.price);
+    else if(state.sort === 'newest') list.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt));
+    else if(state.sort === 'oldest') list.sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt));
+  }
+
   let label = 'Showing all products';
   if(state.sub) label = `Showing results for "${state.sub}"`;
   else if(state.category) label = `Showing results for "${state.category}"`;
@@ -255,27 +343,29 @@ function runSearch(){
 searchBtn.addEventListener('click', runSearch);
 searchInput.addEventListener('keydown', e => { if(e.key === 'Enter') runSearch(); });
 
-/* ---------- SORT (UI wired, logic left as TODO — cheap to fill in later) ---------- */
+/* ---------- SORT ---------- */
 document.getElementById('sortSelect').addEventListener('change', (e) => {
-  // TODO: implement actual sorting once ready, e.g.
-  // if (e.target.value === 'price-asc') list.sort((a,b) => a.price - b.price);
-  console.log('Sort changed to:', e.target.value);
+  state.sort = e.target.value;
+  applyFilters();
 });
 
-/* ---------- PRICE RANGE (UI wired, logic left as TODO) ---------- */
+/* ---------- PRICE RANGE ---------- */
 const priceRange = document.getElementById('priceRange');
 const priceMax = document.getElementById('priceMax');
 priceRange.addEventListener('input', () => {
   priceMax.value = priceRange.value;
 });
 document.getElementById('applyPrice').addEventListener('click', () => {
-  // TODO: filter `products` by priceMin.value / priceMax.value once ready
-  console.log('Apply price range:', document.getElementById('priceMin').value, priceMax.value);
+  const minVal = document.getElementById('priceMin').value.trim();
+  const maxVal = priceMax.value.trim();
+  state.priceMin = minVal === '' ? null : Number(minVal);
+  state.priceMax = maxVal === '' ? null : Number(maxVal);
+  applyFilters();
 });
 
 /* ---------- RESET ---------- */
 function resetFilters(){
-  state = { category:null, sub:null, query:'' };
+  state = { category:null, sub:null, query:'', sort:'', priceMin:null, priceMax:null };
   searchInput.value = '';
   document.getElementById('sortSelect').value = '';
   document.getElementById('priceMin').value = '';
