@@ -402,6 +402,24 @@ updateLivePreview();
 
 
 
+// ============== Toast ==========================
+const toastEl = document.getElementById('toast-msg');
+const toastIcon = document.getElementById('toast-icon');
+const toastText = document.getElementById('toast-text');
+let toastTimeout;
+
+function showToast(message, type = 'success') {
+  clearTimeout(toastTimeout);
+
+  toastText.textContent = message;
+  toastIcon.className = type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-xmark';
+  toastEl.className = 'toast-msg show ' + type;
+
+  toastTimeout = setTimeout(() => {
+    toastEl.classList.remove('show');
+  }, 4000);
+}
+
 // ============== Save product ==========================
 function saveProduct() {
   let subCategory = document.getElementById('pSubCategory');
@@ -415,44 +433,44 @@ function saveProduct() {
 
   // Validation
   if (title.value.trim() === "") {
-    alert("Enter product title.");
+    showToast("Enter product title.", "error");
     title.focus();
     return;
   }
 
   if (description.value.trim() === "") {
-    alert("Enter the product description.");
+    showToast("Enter the product description.", "error");
     description.focus();
     return;
   }
 
   if (keyIngredients.value.trim() === "") {
-    alert("Enter the key ingredients.");
+    showToast("Enter the key ingredients.", "error");
     keyIngredients.focus();
     return;
   }
 
   if (howToUse.value.trim() === "") {
-    alert("Enter how to use the product.");
+    showToast("Enter how to use the product.", "error");
     howToUse.focus();
     return;
   }
 
   if (variantType.value === "none") {
     if (price.value.trim() === "") {
-      alert("Enter the product price.");
+      showToast("Enter the product price.", "error");
       price.focus();
       return;
     }
 
     if (qty.value.trim() === "") {
-      alert("Enter the stock quantity.");
+      showToast("Enter the stock quantity.", "error");
       qty.focus();
       return;
     }
   } else {
     if (variantRows.length === 0) {
-      alert("Add at least one product variant.");
+      showToast("Add at least one product variant.", "error");
       return;
     }
 
@@ -460,24 +478,24 @@ function saveProduct() {
       const v = variantRows[i];
 
       if (v.label.trim() === "") {
-        alert(`Enter the label for variant ${i + 1}.`);
+        showToast(`Enter the label for variant ${i + 1}.`, "error");
         return;
       }
 
       if (v.price.trim() === "") {
-        alert(`Enter the price for variant ${i + 1}.`);
+        showToast(`Enter the price for variant ${i + 1}.`, "error");
         return;
       }
 
       if (v.stock.trim() === "") {
-        alert(`Enter the stock quantity for variant ${i + 1}.`);
+        showToast(`Enter the stock quantity for variant ${i + 1}.`, "error");
         return;
       }
     }
   }
 
   if (uploadedImages.length === 0) {
-    alert("Upload at least one product image.");
+    showToast("Upload at least one product image.", "error");
     return;
   }
 
@@ -516,15 +534,10 @@ function saveProduct() {
   request.onreadystatechange = function () {
     if (request.status == 200 && request.readyState == 4) {
       let response = request.responseText;
-      const confirmEl = document.getElementById('productConfirm');
       if (response.startsWith('success:')) {
-        confirmEl.textContent = 'Product saved (ID #' + response.split(':')[1] + ').';
-        confirmEl.style.color = '#3f7d54';
-        confirmEl.style.display = 'block';
+        showToast('Product saved (ID #' + response.split(':')[1] + ').', 'success');
       } else {
-        confirmEl.textContent = 'Error: ' + response;
-        confirmEl.style.color = '#C4536B';
-        confirmEl.style.display = 'block';
+        showToast('Error: ' + response, 'error');
       }
     }
   }
