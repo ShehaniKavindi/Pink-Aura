@@ -18,7 +18,7 @@
 
 <body>
 
-    <nav class="top">
+    <!-- <nav class="top">
         <div class="logo">PiNK <span>AURA</span></div>
         <div class="nav-links">
             <a href="index.html">Home</a>
@@ -33,7 +33,8 @@
             <div class="icon-btn" aria-label="Account">&#128100;</div>
             <div class="icon-btn" aria-label="Bag">&#128722;<span class="cart-count">0</span></div>
         </div>
-    </nav>
+    </nav> -->
+    <?php include "header.php" ?>
 
     <div class="wrap">
 

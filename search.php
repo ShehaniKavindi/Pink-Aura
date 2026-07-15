@@ -92,7 +92,7 @@ $categories = array_values($categoriesData); // re-index for a clean JS array
 </head>
 <body>
 
-<nav class="top">
+  <!-- <nav class="top">
     <div class="logo">PiNK <span>AURA</span></div>
     <div class="nav-links">
       <a href="index.html">Home</a>
@@ -109,7 +109,8 @@ $categories = array_values($categoriesData); // re-index for a clean JS array
           class="wishlist-count">0</span></button>
       <button class="icon-btn" aria-label="Bag" data-bag-toggle>&#128722;<span class="bag-count">0</span></button>
     </div>
-  </nav>
+  </nav> -->
+  <?php include "header.php" ?>
 
 <div class="search-layout">
 

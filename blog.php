@@ -18,7 +18,7 @@
 
 <body>
 
-  <nav class="top">
+  <!-- <nav class="top">
     <div class="logo">PiNK <span>AURA</span></div>
     <div class="nav-links">
       <a href="index.html">Home</a>
@@ -35,7 +35,9 @@
           class="wishlist-count">0</span></button>
       <button class="icon-btn" aria-label="Bag" data-bag-toggle>&#128722;<span class="bag-count">0</span></button>
     </div>
-  </nav>
+  </nav> -->
+
+  <?php include "header.php" ?>
 
   <!-- HERO -->
   <section class="blog-hero">
@@ -244,10 +246,7 @@
     </div>
   </section>
 
-  <footer>
-    <div class="logo">PiNK <span style="color:var(--color-primary-strong);">AURA</span></div>
-    <div>&copy; 2026 PiNK AURA. All product photos are placeholders.</div>
-  </footer>
+  <?php include "footer.php" ?>
 
   <!-- BAG DRAWER (shared — copied from index.html) -->
   <div class="bag-overlay" id="bagOverlay" data-bag-close></div>
