@@ -247,43 +247,7 @@
   </section>
 
   <?php include "footer.php" ?>
-
-  <!-- BAG DRAWER (shared — copied from index.html) -->
-  <div class="bag-overlay" id="bagOverlay" data-bag-close></div>
-  <div class="bag-drawer" id="bagModal" role="dialog" aria-modal="true" aria-labelledby="bagModalLabel">
-
-    <div class="bag-header">
-      <h2 class="bag-title" id="bagModalLabel">My <span>bag</span></h2>
-      <button type="button" class="bag-close" data-bag-close aria-label="Close bag">&#10005;</button>
-    </div>
-
-    <div class="bag-body" id="bagBody">
-      <!-- populated by bag.js -->
-    </div>
-
-    <div class="bag-footer">
-      <div class="bag-total-row">
-        <span class="bag-total-label">Total</span>
-        <span class="bag-total-amount" id="bagTotalAmount">Rs 0</span>
-      </div>
-      <a href="#" class="btn bag-checkout-btn">Checkout</a>
-    </div>
-
-  </div>
-  <!-- WISHLIST DRAWER (shared — copied from index.html) -->
-  <div class="wishlist-overlay" id="wishlistOverlay" data-wishlist-close></div>
-  <div class="wishlist-drawer" id="wishlistModal" role="dialog" aria-modal="true" aria-labelledby="wishlistModalLabel">
-
-    <div class="wishlist-header">
-      <h2 class="wishlist-title" id="wishlistModalLabel">My <span>wishlist</span></h2>
-      <button type="button" class="wishlist-close" data-wishlist-close aria-label="Close wishlist">&#10005;</button>
-    </div>
-
-    <div class="wishlist-body" id="wishlistBody">
-      <!-- populated by wishlist.js -->
-    </div>
-
-  </div>
+  
 
   <script src="assets/js/wishlist.js"></script>
   <script src="assets/js/bag.js"></script>

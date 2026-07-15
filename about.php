@@ -12,28 +12,12 @@
     rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/about.css">
+
+  <link rel="icon" href="assets/images/site-images/logo.png" />
 </head>
 
 <body>
 
-  <!-- <nav class="top">
-    <div class="logo">PiNK <span>AURA</span></div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="search.html">Shop</a>
-      <a href="category.html">Categories</a>
-      <a href="about.html" class="active">About us</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
-    </div>
-    <div class="nav-icons">
-      <div class="icon-btn" aria-label="Search">&#9906;</div>
-      <div class="icon-btn" aria-label="Account">&#128100;</div>
-      <button class="icon-btn" aria-label="Wishlist" data-wishlist-toggle>&#9825;<span
-          class="wishlist-count">0</span></button>
-      <button class="icon-btn" aria-label="Bag" data-bag-toggle>&#128722;<span class="bag-count">0</span></button>
-    </div>
-  </nav> -->
   <?php include "header.php" ?>
 
   <!-- HERO -->
@@ -165,10 +149,6 @@
     </div>
   </section>
 
-  <!-- <footer>
-    <div class="logo">PiNK <span style="color:var(--color-primary-strong);">AURA</span></div>
-    <div>&copy; 2026 PiNK AURA. All product photos are placeholders.</div>
-  </footer> -->
   <?php include "footer.php" ?>
 
   <!-- BAG DRAWER (shared — copied from index.html) -->
