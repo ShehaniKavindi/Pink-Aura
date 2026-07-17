@@ -243,8 +243,9 @@
   width: 100%;
   justify-content: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--color-text-secondary) !important;
   margin-bottom: 26px;
+  border: none !important;
 }
 
 .login-alt .g-icon {

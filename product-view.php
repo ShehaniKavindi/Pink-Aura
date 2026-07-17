@@ -112,9 +112,9 @@ if ($product_id > 0) {
     <?php else: ?>
 
       <div class="breadcrumb">
-        <a href="index.html">Home</a><span class="sep">/</span>
-        <a href="category.html"><?php echo htmlspecialchars($product['category']); ?></a><span class="sep">/</span>
-        <a href="category.html"><?php echo htmlspecialchars($product['sub']); ?></a><span class="sep">/</span>
+        <a href="index.php">Home</a><span class="sep">/</span>
+        <a href="category.php"><?php echo htmlspecialchars($product['category']); ?></a><span class="sep">/</span>
+        <a href="category.php"><?php echo htmlspecialchars($product['sub']); ?></a><span class="sep">/</span>
         <span class="current"><?php echo htmlspecialchars($product['title']); ?></span>
       </div>
 
@@ -172,7 +172,7 @@ if ($product_id > 0) {
 
           <div class="accordion">
             <details class="acc-item" open>
-              <summary>Key ingredients <span class="chev">&#43;</span></summary>
+              <summary>Key ingredients / Materials used<span class="chev">&#43;</span></summary>
               <div class="acc-body">
                 <?php echo nl2br(htmlspecialchars($product['key_ingredients'] ?: 'Not specified.')); ?>
               </div>

@@ -20,7 +20,7 @@
 <body>
 
   <div class="login-page register-page">
-    <img class="login-bg" src="assets/images/site-images/loginBg.jpg" alt="">
+    <img class="login-bg" src="assets/images/site-images/login-bg.jpg" alt="">
     <div class="login-bg-overlay"></div>
 
     <a class="login-logo" href="index.html">PiNK <span>AURA</span></a>
@@ -94,12 +94,18 @@
         <span class="g-icon">G</span> Continue with Google
       </button>
 
-      <p class="login-footer-text">Already have an account? <a href="login.html">Sign in</a></p>
+      <p class="login-footer-text">Already have an account? <a href="login.php">Sign in</a></p>
     </div>
   </div>
 
+  <!-- toast -->
+  <div class="toast-msg" id="toast-msg">
+    <i id="toast-icon" class="fa-solid fa-circle-xmark"></i>
+    <span id="toast-text" class="toast-text"></span>
+  </div>
+
   <script>
-    const form = document.getElementById('registerForm');
+    // live "passwords match" hint — page-specific, stays inline
     const password = document.getElementById('password');
     const confirmPassword = document.getElementById('confirmPassword');
     const matchHint = document.getElementById('matchHint');
@@ -118,31 +124,9 @@
 
     password.addEventListener('input', checkMatch);
     confirmPassword.addEventListener('input', checkMatch);
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!checkMatch()) return;
-      // TODO: wire up to process/register.php
-      console.log('Register submitted:', {
-        firstName: document.getElementById('firstName').value,
-        lastName: document.getElementById('lastName').value,
-        email: document.getElementById('email').value,
-        password: password.value,
-        terms: document.getElementById('terms').checked
-      });
-    });
-
-    // Show / hide password — works for both password fields independently
-    document.querySelectorAll('.toggle-pass').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const input = document.getElementById(btn.dataset.target);
-        const isHidden = input.type === 'password';
-        input.type = isHidden ? 'text' : 'password';
-        btn.innerHTML = isHidden ? '<i class="fa-solid fa-eye"></i>' : '<i class="fa-solid fa-eye-slash"></i>';
-        btn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
-      });
-    });
   </script>
+
+  <script src="assets/js/auth.js"></script>
 
 </body>
 

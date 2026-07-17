@@ -20,10 +20,10 @@
 <body>
 
   <div class="login-page">
-    <img class="login-bg" src="assets/images/site-images/loginBg.jpg" alt="">
+    <img class="login-bg" src="assets/images/site-images/login-bg.jpg" alt="">
     <div class="login-bg-overlay"></div>
 
-    <a class="login-logo" href="index.html">PiNK <span>AURA</span></a>
+    <a class="login-logo" href="index.php">PiNK <span>AURA</span></a>
 
     <div class="login-card">
       <p class="eyebrow">Welcome back</p>
@@ -45,7 +45,7 @@
           <div class="input-wrap">
             <i class="fa-solid fa-lock icon-left"></i>
             <input type="password" id="password" name="password" placeholder="••••••••" required>
-            <button type="button" class="toggle-pass" id="togglePass" aria-label="Show password">
+            <button type="button" class="toggle-pass" data-target="password" aria-label="Show password">
               <i class="fa-solid fa-eye-slash"></i>
             </button>
           </div>
@@ -56,7 +56,7 @@
             <input type="checkbox" name="remember">
             Remember me
           </label>
-          <a href="forgot-passwowrd.html" class="link">Forgot password?</a>
+          <a href="forgot-passwowrd.php" class="link">Forgot password?</a>
         </div>
 
         <button type="submit" class="btn login-submit">Sign in &rarr;</button>
@@ -64,36 +64,22 @@
 
       <div class="login-divider"><span>or</span></div>
 
-      <button type="button" class="btn outline login-alt">
+      <button type="button" class="btn login-alt">
         <span class="g-icon">G</span> Continue with Google
       </button>
 
-      <p class="login-footer-text">New to PiNK AURA? <a href="register.html">Create an account</a></p>
+      <p class="login-footer-text">New to PiNK AURA? <a href="register.php">Create an account</a></p>
     </div>
   </div>
 
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', function (e) {
-      e.preventDefault();
-      // TODO: wire up to process/login.php
-      console.log('Login submitted:', {
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value,
-        remember: document.querySelector('input[name="remember"]').checked
-      });
-    });
+  <!-- toast -->
+  <div class="toast-msg" id="toast-msg">
+    <i id="toast-icon" class="fa-solid fa-circle-xmark"></i>
+    <span id="toast-text" class="toast-text"></span>
+  </div>
 
-    // Show / hide password
-    const passInput = document.getElementById('password');
-    const toggleBtn = document.getElementById('togglePass');
-    toggleBtn.addEventListener('click', () => {
-      const isHidden = passInput.type === 'password';
-      passInput.type = isHidden ? 'text' : 'password';
-      toggleBtn.innerHTML = isHidden ? '<i class="fa-solid fa-eye"></i>' : '<i class="fa-solid fa-eye-slash"></i>';
-      toggleBtn.setAttribute('aria-label', isHidden ? 'Hide password' : 'Show password');
-    });
-
-  </script>
+  <!-- shared toast + login()/register() logic -->
+  <script src="assets/js/auth.js"></script>
 
 </body>
 

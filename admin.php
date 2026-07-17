@@ -301,7 +301,7 @@
                 </div>
 
                 <div class="form-field">
-                  <label for="pIngredients">Key ingredients</label>
+                  <label for="pIngredients">Key ingredients / Materials used</label>
                   <textarea id="pIngredients" rows="3" placeholder="e.g. Vitamin C, Hyaluronic acid, Niacinamide"></textarea>
                 </div>
 
