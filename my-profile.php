@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/my-profile.css">
 
@@ -234,7 +235,9 @@
             }
 
             function exitEditMode() {
-                inputs.forEach(input => { input.disabled = true; });
+                inputs.forEach(input => {
+                    input.disabled = true;
+                });
                 editBtn.hidden = false;
                 saveBtn.hidden = true;
                 discardBtn.hidden = true;
@@ -246,7 +249,11 @@
                     const display = document.getElementById('dobDisplay');
                     if (dob && display && dob.value) {
                         display.textContent = new Date(dob.value + 'T00:00:00')
-                            .toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+                            .toLocaleDateString('en-GB', {
+                                day: 'numeric',
+                                month: 'short',
+                                year: 'numeric'
+                            });
                     }
                 }
             }
@@ -254,21 +261,25 @@
             editBtn.addEventListener('click', enterEditMode);
 
             discardBtn.addEventListener('click', () => {
-                inputs.forEach(input => { input.value = snapshot[input.id]; });
+                inputs.forEach(input => {
+                    input.value = snapshot[input.id];
+                });
                 exitEditMode();
             });
 
             saveBtn.addEventListener('click', () => {
                 // TODO: send updated fields to process/updateProfile.php (or shipping equivalent)
                 const data = {};
-                inputs.forEach(input => { data[input.id] = input.value; });
+                inputs.forEach(input => {
+                    data[input.id] = input.value;
+                });
                 console.log('Saving ' + form.dataset.form + ' details:', data);
                 exitEditMode();
             });
         });
 
         /* ── Avatar preview ── */
-        document.getElementById('avatarInput').addEventListener('change', function () {
+        document.getElementById('avatarInput').addEventListener('change', function() {
             const file = this.files[0];
             if (!file) return;
             const reader = new FileReader();

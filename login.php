@@ -56,7 +56,7 @@
             <input type="checkbox" name="remember">
             Remember me
           </label>
-          <a href="forgot-passwowrd.php" class="link">Forgot password?</a>
+          <a href="forgot-password.php" class="link">Forgot password?</a>
         </div>
 
         <button type="submit" class="btn login-submit">Sign in &rarr;</button>

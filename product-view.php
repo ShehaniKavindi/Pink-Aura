@@ -72,6 +72,7 @@ if ($product_id > 0) {
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/product-view.css">
 
@@ -158,7 +159,7 @@ if ($product_id > 0) {
               <span class="qty-val" id="qtyVal">1</span>
               <button type="button" id="qtyPlus" aria-label="Increase quantity">&plus;</button>
             </div>
-            <button class="btn" id="addToCartBtn">Add to cart &rarr;</button>
+            <button class="btn" id="addToCartBtn">Add to bag &rarr;</button>
             <button class="icon-btn lg" id="wishlistBtn2" aria-label="Add to wishlist">&#9825;</button>
           </div>
 

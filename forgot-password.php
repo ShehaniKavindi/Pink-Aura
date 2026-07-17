@@ -17,7 +17,7 @@
 <body class="fp-body">
 
     <!-- back link -->
-    <a href="login.html" class="fp-back">
+    <a href="login.php" class="fp-back">
         <i class="fa-solid fa-arrow-left"></i> Back to login
     </a>
 
@@ -177,6 +177,7 @@
         </div>
     </div>
 
+    <script src="assets/js/auth.js"></script>
 <script>
 
     let currentStep = 1;

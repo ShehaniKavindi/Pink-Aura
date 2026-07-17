@@ -13,59 +13,59 @@ $cat_rs = Database::search("SELECT * FROM `categories` ORDER BY `category_id`");
 $cat_count = $cat_rs->num_rows;
 
 for ($i = 0; $i < $cat_count; $i++) {
-    $cat = $cat_rs->fetch_assoc();
-    $catId = $cat['category_id'];
+  $cat = $cat_rs->fetch_assoc();
+  $catId = $cat['category_id'];
 
-    $sub_rs = Database::search("SELECT * FROM `subcategories` WHERE `category_id`='" . $catId . "' ORDER BY `subcategory_id`");
-    $sub_num = $sub_rs->num_rows;
+  $sub_rs = Database::search("SELECT * FROM `subcategories` WHERE `category_id`='" . $catId . "' ORDER BY `subcategory_id`");
+  $sub_num = $sub_rs->num_rows;
 
-    $subs = [];
-    $productTotal = 0;
+  $subs = [];
+  $productTotal = 0;
 
-    for ($j = 0; $j < $sub_num; $j++) {
-        $sub = $sub_rs->fetch_assoc();
-        $subId = $sub['subcategory_id'];
+  for ($j = 0; $j < $sub_num; $j++) {
+    $sub = $sub_rs->fetch_assoc();
+    $subId = $sub['subcategory_id'];
 
-        // how many products in this subcategory
-        $count_rs = Database::search("SELECT COUNT(*) AS cnt FROM `products` WHERE `subcategory_id`='" . $subId . "'");
-        $subProductCount = (int) $count_rs->fetch_assoc()['cnt'];
-        $productTotal += $subProductCount;
+    // how many products in this subcategory
+    $count_rs = Database::search("SELECT COUNT(*) AS cnt FROM `products` WHERE `subcategory_id`='" . $subId . "'");
+    $subProductCount = (int) $count_rs->fetch_assoc()['cnt'];
+    $productTotal += $subProductCount;
 
-        // one example product (most recent) + its primary image, if any
-        $prod_rs = Database::search(
-            "SELECT `p`.`title`, `pi`.`image_url`
+    // one example product (most recent) + its primary image, if any
+    $prod_rs = Database::search(
+      "SELECT `p`.`title`, `pi`.`image_url`
              FROM `products` `p`
              LEFT JOIN `product_images` `pi`
                     ON `pi`.`product_id` = `p`.`product_id` AND `pi`.`is_primary` = '1'
              WHERE `p`.`subcategory_id` = '" . $subId . "'
              ORDER BY `p`.`created_at` DESC
              LIMIT 1"
-        );
-        $prod = $prod_rs->num_rows ? $prod_rs->fetch_assoc() : null;
+    );
+    $prod = $prod_rs->num_rows ? $prod_rs->fetch_assoc() : null;
 
-        $subs[] = [
-            'label'   => $sub['name'],
-            'product' => $prod ? $prod['title'] : null,
-            'image'   => ($prod && !empty($prod['image_url'])) ? $prod['image_url'] : null,
-        ];
-    }
-
-    // keep the original "first tile large, last two wide" layout, now data-driven by position
-    $size = '';
-    if ($i === 0) {
-        $size = 'large';
-    } elseif ($i >= $cat_count - 2) {
-        $size = 'wide';
-    }
-
-    $categories[] = [
-        'key'   => $cat['slug'],
-        'name'  => $cat['name'],
-        'size'  => $size,
-        'count' => $sub_num . ' subcategor' . ($sub_num === 1 ? 'y' : 'ies')
-                 . ' · ' . $productTotal . ' product' . ($productTotal === 1 ? '' : 's'),
-        'subs'  => $subs,
+    $subs[] = [
+      'label'   => $sub['name'],
+      'product' => $prod ? $prod['title'] : null,
+      'image'   => ($prod && !empty($prod['image_url'])) ? $prod['image_url'] : null,
     ];
+  }
+
+  // keep the original "first tile large, last two wide" layout, now data-driven by position
+  $size = '';
+  if ($i === 0) {
+    $size = 'large';
+  } elseif ($i >= $cat_count - 2) {
+    $size = 'wide';
+  }
+
+  $categories[] = [
+    'key'   => $cat['slug'],
+    'name'  => $cat['name'],
+    'size'  => $size,
+    'count' => $sub_num . ' subcategor' . ($sub_num === 1 ? 'y' : 'ies')
+      . ' · ' . $productTotal . ' product' . ($productTotal === 1 ? '' : 's'),
+    'subs'  => $subs,
+  ];
 }
 
 $categoriesJSON = json_encode($categories, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
@@ -80,6 +80,7 @@ $categoriesJSON = json_encode($categories, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/category.css">
 
@@ -114,8 +115,12 @@ $categoriesJSON = json_encode($categories, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
     function escapeHtml(str) {
       if (str === null || str === undefined) return '';
       return String(str).replace(/[&<>"']/g, m => ({
-        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-      }[m]));
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      } [m]));
     }
 
     function tileHTML(c, i, extraClass = '') {

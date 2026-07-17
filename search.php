@@ -86,6 +86,7 @@ $categories = array_values($categoriesData); // re-index for a clean JS array
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/search.css">
 
@@ -168,7 +169,7 @@ $categories = array_values($categoriesData); // re-index for a clean JS array
     <main class="search-main">
       <div class="search-bar-row">
         <input type="search" id="searchInput" placeholder="Search for products, categories, brands...">
-        <button class="search-btn" id="searchBtn">&#9906; Search</button>
+        <button class="search-btn" id="searchBtn"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
       </div>
 
       <div class="results-meta">
@@ -273,7 +274,7 @@ $categories = array_values($categoriesData); // re-index for a clean JS array
             ${p.variantType !== 'none' ? 'From ' : ''}Rs ${p.price.toLocaleString()}
             ${p.oldPrice ? `<span class="old">Rs ${p.oldPrice.toLocaleString()}</span>` : ''}
           </div>
-          <button class="prod-cart" aria-label="Add to cart">&#128722;</button>
+          <button class="prod-cart" aria-label="Add to cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
