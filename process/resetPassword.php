@@ -1,11 +1,30 @@
 <?php
-include "../connection.php";
+include "../includes/connection.php";
 
-$email = $_POST['em'];
-$password = $_POST['pw'];
+function esc($value) {
+    Database::setUpConnection();
+    return Database::$connection->real_escape_string($value);
+}
 
-Database::iud("UPDATE `users` SET `password`='".$password."' WHERE `email`='".$email."' ");
+$email = trim($_POST['em'] ?? '');
+$pw    = $_POST['pw'] ?? '';
 
-echo("success");
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo("error: Please enter a valid email address.");
+    exit;
+}
+if (strlen($pw) < 8) {
+    echo("error: Password must be at least 8 characters.");
+    exit;
+}
 
-?>
+$emailEsc = esc($email);
+$passwordHash = password_hash($pw, PASSWORD_DEFAULT);
+
+$result = Database::iud("UPDATE `users` SET `password_hash`='" . esc($passwordHash) . "', `otp`=NULL WHERE `email`='" . $emailEsc . "' ");
+
+if ($result) {
+    echo("success");
+} else {
+    echo("error: Failed to update password.");
+}
