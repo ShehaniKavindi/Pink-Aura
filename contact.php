@@ -19,24 +19,6 @@
 
 <body>
 
-  <!-- <nav class="top">
-    <div class="logo">PiNK <span>AURA</span></div>
-    <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="search.html">Shop</a>
-      <a href="category.html">Categories</a>
-      <a href="about.html">About us</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html" class="active">Contact</a>
-    </div>
-    <div class="nav-icons">
-      <div class="icon-btn" aria-label="Search">&#9906;</div>
-      <div class="icon-btn" aria-label="Account">&#128100;</div>
-      <button class="icon-btn" aria-label="Wishlist" data-wishlist-toggle>&#9825;<span
-          class="wishlist-count">0</span></button>
-      <button class="icon-btn" aria-label="Bag" data-bag-toggle>&#128722;<span class="bag-count">0</span></button>
-    </div>
-  </nav> -->
 
   <?php include "header.php" ?>
 
@@ -80,6 +62,11 @@
         <!-- RIGHT FORM PANEL -->
         <div class="contact-form-panel">
           <form id="contactForm">
+
+            <div class="contact-field">
+              <label for="contactName">Your name <span class="required">*</span></label>
+              <input type="text" id="contactName" name="name" placeholder="Jane Doe" required>
+            </div>
 
             <div class="contact-field">
               <label for="contactEmail">Your email <span class="required">*</span></label>
@@ -160,6 +147,13 @@
     </div>
   </section>
 
+  <!-- toast -->
+  <div class="toast-msg" id="toast-msg">
+    <i id="toast-icon" class="fa-solid fa-circle-xmark"></i>
+    <span id="toast-text" class="toast-text"></span>
+  </div>
+
+
   <?php include "footer.php" ?>
 
 
@@ -167,7 +161,25 @@
   <script src="assets/js/bag.js"></script>
   <script src="assets/js/main.js"></script>
   <script>
+    function showToast(message, type = 'error') {
+      const toast = document.getElementById('toast-msg');
+      const icon = document.getElementById('toast-icon');
+      const text = document.getElementById('toast-text');
+      if (!toast) return;
+
+      text.textContent = message;
+      toast.classList.remove('success', 'error');
+      toast.classList.add(type);
+      icon.className = type === 'success' ? 'fa-solid fa-circle-check' : 'fa-solid fa-circle-xmark';
+
+      toast.classList.add('show');
+      clearTimeout(showToast._timer);
+      showToast._timer = setTimeout(() => toast.classList.remove('show'), 3500);
+    }
+
     const reasonSelect = document.getElementById('contactReason');
+    const nameField = document.getElementById('contactName');
+    const emailField = document.getElementById('contactEmail');
     const messageField = document.getElementById('contactMessage');
     const messageCount = document.getElementById('messageCount');
     const contactForm = document.getElementById('contactForm');
@@ -189,24 +201,73 @@
     });
 
     /* ── Clear / discard ── */
-    clearBtn.addEventListener('click', () => {
+    function resetContactForm() {
       contactForm.reset();
       messageCount.textContent = '0 / 1000';
-      contactSuccess.classList.remove('show');
       document.querySelectorAll('#quickPills .pill').forEach(p => p.classList.remove('active'));
+    }
+    clearBtn.addEventListener('click', () => {
+      resetContactForm();
+      contactSuccess.classList.remove('show');
     });
+
+    /* ── Client-side validation ── */
+    function validateContactForm() {
+      const name = nameField.value.trim();
+      const email = emailField.value.trim();
+      const reason = reasonSelect.value;
+      const message = messageField.value.trim();
+
+      if (!name) {
+        showToast('Please enter your name.');
+        return false;
+      }
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        showToast('Please enter a valid email address.');
+        return false;
+      }
+      if (!reason) {
+        showToast('Please select a reason.');
+        return false;
+      }
+      if (!message) {
+        showToast('Please enter a message.');
+        return false;
+      }
+      if (message.length > 1000) {
+        showToast('Message must be 1000 characters or fewer.');
+        return false;
+      }
+      return true;
+    }
 
     /* ── Submit ── */
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      // TODO: send to process/contact.php
-      const data = {
-        email: document.getElementById('contactEmail').value,
-        reason: reasonSelect.value,
-        message: messageField.value
+      if (!validateContactForm()) return;
+
+      const form = new FormData();
+      form.append('name', nameField.value.trim());
+      form.append('email', emailField.value.trim());
+      form.append('reason', reasonSelect.value);
+      form.append('message', messageField.value.trim());
+
+      const request = new XMLHttpRequest();
+      request.onreadystatechange = function() {
+        if (request.readyState === 4 && request.status === 200) {
+          const response = request.responseText.trim();
+          if (response === 'success') {
+            // showToast('Your message has been sent — we\'ll get back to you soon.', 'success');
+            contactSuccess.classList.add('show');
+            resetContactForm();
+          } else {
+            showToast(response.replace(/^error:\s*/, ''), 'error');
+          }
+        }
       };
-      console.log('Contact form submitted:', data);
-      contactSuccess.classList.add('show');
+      request.open('POST', 'process/contactMessage.php', true);
+      request.send(form);
     });
   </script>
 
