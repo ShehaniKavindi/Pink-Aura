@@ -21,9 +21,11 @@ if (strlen($pw) < 8) {
 $emailEsc = esc($email);
 $passwordHash = password_hash($pw, PASSWORD_DEFAULT);
 
-$result = Database::iud("UPDATE `users` SET `password_hash`='" . esc($passwordHash) . "', `otp`=NULL WHERE `email`='" . $emailEsc . "' ");
+Database::iud("UPDATE `users` SET `password_hash`='" . esc($passwordHash) . "', `otp`=NULL WHERE `email`='" . $emailEsc . "' ");
 
-if ($result) {
+$check = Database::search("SELECT `user_id` FROM `users` WHERE `email`='" . $emailEsc . "' AND `password_hash`='" . esc($passwordHash) . "' LIMIT 1");
+
+if ($check && $check->num_rows === 1) {
     echo("success");
 } else {
     echo("error: Failed to update password.");

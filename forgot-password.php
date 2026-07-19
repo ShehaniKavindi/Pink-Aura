@@ -75,7 +75,7 @@
                 <div class="fp-divider"></div>
                 <div class="fp-bottom">
                     Remembered it?
-                    <a href="login.html">Sign in instead</a>
+                    <a href="login.php">Sign in instead</a>
                 </div>
             </div>
 
@@ -92,12 +92,12 @@
 
                 <div class="field">
                     <div class="otp-group" id="otpGroup">
-                        <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
-                        <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
-                        <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
-                        <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
-                        <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
-                        <input class="otp-input" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]">
+                        <input class="otp-input" id="otp1" name="otp1" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off">
+                        <input class="otp-input" id="otp2" name="otp2" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off">
+                        <input class="otp-input" id="otp3" name="otp3" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off">
+                        <input class="otp-input" id="otp4" name="otp4" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off">
+                        <input class="otp-input" id="otp5" name="otp5" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off">
+                        <input class="otp-input" id="otp6" name="otp6" type="text" maxlength="1" inputmode="numeric" pattern="[0-9]" autocomplete="off">
                     </div>
                     <p class="fp-resend">
                         Didn't receive it?
@@ -167,7 +167,7 @@
                     </div>
                     <h2>Password updated!</h2>
                     <p>Your password has been reset successfully. You can now sign in with your new password.</p>
-                    <a href="login.html" class="fp-btn" style="text-decoration:none;">
+                    <a href="login.php" class="fp-btn" style="text-decoration:none;">
                         <i class="fa-solid fa-arrow-right-to-bracket"></i>
                         Go to sign in
                     </a>
