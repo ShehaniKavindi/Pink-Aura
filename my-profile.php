@@ -19,26 +19,20 @@
 
 <body>
 
-    <!-- <nav class="top">
-        <div class="logo">PiNK <span>AURA</span></div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="#">Shop</a>
-            <a href="category.html">Categories</a>
-            <a href="#">About us</a>
-            <a href="#">Blog</a>
-            <a href="#">Contact</a>
-        </div>
-        <div class="nav-icons">
-            <div class="icon-btn" aria-label="Search">&#9906;</div>
-            <div class="icon-btn" aria-label="Account">&#128100;</div>
-            <div class="icon-btn" aria-label="Bag">&#128722;<span class="cart-count">0</span></div>
-        </div>
-    </nav> -->
     <?php include "header.php" ?>
+    <?php session_start(); 
+    include "includes/connection.php";
+    ?>
 
     <div class="wrap">
-
+        <?php
+        $rs = Database::search("SELECT * FROM `users` WHERE `email`='".$_SESSION['email']."' ");
+        $num = $rs->num_rows;
+        if ($num == 0) {
+        ?>sign in first<?php
+        } else {
+            $data = $rs->fetch_assoc();
+        ?>
         <div class="profile-page-head">
             <h1>My profile</h1>
             <p>Manage your personal details, shipping address, and account preferences.</p>
@@ -58,8 +52,8 @@
                             aria-label="Change profile picture">&#128247;</label>
                         <input type="file" id="avatarInput" accept="image/*" hidden>
                     </div>
-                    <p class="profile-name">Amaya Perera</p>
-                    <p class="profile-email">amaya.perera@example.com</p>
+                    <p class="profile-name"><?php echo $data['first_name']; ?> <?php echo $data['last_name']; ?></p>
+                    <p class="profile-email"><?php echo $data['email']; ?></p>
 
                 </div>
 
@@ -111,28 +105,28 @@
                         <div class="form-row">
                             <div class="field">
                                 <label for="firstName">First name</label>
-                                <input type="text" id="firstName" value="Amaya" disabled>
+                                <input type="text" id="firstName" value="<?php echo $data['first_name']; ?>" disabled>
                             </div>
                             <div class="field">
                                 <label for="lastName">Last name</label>
-                                <input type="text" id="lastName" value="Perera" disabled>
+                                <input type="text" id="lastName" value="<?php echo $data['last_name']; ?>" disabled>
                             </div>
                         </div>
 
                         <div class="field">
                             <label for="profileEmail">Email address</label>
-                            <input type="email" id="profileEmail" value="amaya.perera@example.com" disabled>
+                            <input type="email" id="profileEmail" value="<?php echo $data['email']; ?>" disabled>
                         </div>
 
                         <div class="form-row">
                             <div class="field">
                                 <label for="phone">Phone number</label>
-                                <input type="text" id="phone" value="+94 71 234 5678" disabled>
+                                <input type="text" id="phone" value="<?php echo $data['phone']; ?>" disabled>
                             </div>
                             <div class="field" id="dobField">
                                 <label for="dob">Date of birth</label>
-                                <input type="date" class="date-field" id="dob" value="2001-05-14" disabled>
-                                <span class="date-display" id="dobDisplay">14 May 2001</span>
+                                <input type="date" class="date-field" id="dob" value="<?php echo $data['date_of_birth']; ?>" disabled>
+                                <span class="date-display" id="dobDisplay"><?php echo $data['date_of_birth']; ?></span>
                             </div>
                         </div>
                     </form>
@@ -140,6 +134,25 @@
 
                 <!-- SHIPPING DETAILS -->
                 <div class="profile-panel" id="tab-shipping">
+
+                    <?php
+                    $address_rs = Database::search("SELECT * FROM `addresses` WHERE `user_id`='".$data['user_id']."' ");
+                    $address_num = $address_rs->num_rows;
+                    if ($address_num == 0) {
+                    ?>
+                    <div class="profile-panel-head">
+                        <div class="panel-icon">&#128230;</div>
+                        <h2>Shipping details</h2>
+                    </div>
+                    <p class="profile-panel-sub">Where should we deliver your orders?</p>
+                    <p class="profile-panel-sub" style="margin-top: 3rem;">
+
+                    </p>
+
+                    <?php
+                    } else {
+                        $address_data = $address_rs->fetch_assoc();
+                    ?>
                     <div class="profile-panel-head">
                         <div class="panel-icon">&#128230;</div>
                         <h2>Shipping details</h2>
@@ -154,39 +167,46 @@
                     <form class="profile-form" data-form="shipping">
                         <div class="field">
                             <label for="addr1">Address line 1</label>
-                            <input type="text" id="addr1" value="42 Lotus Lane" disabled>
+                            <input type="text" id="addr1" value="<?php echo $address_data['address_line1']; ?>" disabled>
                         </div>
                         <div class="field">
                             <label for="addr2">Address line 2 (optional)</label>
-                            <input type="text" id="addr2" value="Near Rose Garden Park" disabled>
+                            <input type="text" id="addr2" value="<?php echo $address_data['address_line2']; ?>" disabled>
                         </div>
 
                         <div class="form-row">
                             <div class="field">
                                 <label for="city">City</label>
-                                <input type="text" id="city" value="Maharagama" disabled>
+                                <input type="text" id="city" value="<?php echo $address_data['city']; ?>" disabled>
                             </div>
                             <div class="field">
                                 <label for="postal">Postal code</label>
-                                <input type="text" id="postal" value="10280" disabled>
+                                <input type="text" id="postal" value="<?php echo $address_data['postal_code']; ?>" disabled>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="field">
                                 <label for="country">Country</label>
-                                <input type="text" id="country" value="Sri Lanka" disabled>
+                                <input type="text" id="country" value="<?php echo $address_data['country']; ?>" disabled>
                             </div>
                             <div class="field">
                                 <label for="shipPhone">Contact number</label>
-                                <input type="text" id="shipPhone" value="+94 71 234 5678" disabled>
+                                <input type="text" id="shipPhone" value="<?php echo $address_data['contact_phone']; ?>" disabled>
                             </div>
                         </div>
                     </form>
+                    <?php 
+                    }
+                    ?>
                 </div>
 
             </div>
         </div>
+
+        <?php 
+        }
+        ?>
     </div>
 
     <footer>
