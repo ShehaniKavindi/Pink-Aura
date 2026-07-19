@@ -81,22 +81,6 @@ if ($product_id > 0) {
 
 <body>
 
-  <!-- <nav class="top">
-  <div class="logo">PiNK <span>AURA</span></div>
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="search.php">Shop</a>
-    <a href="category.html">Categories</a>
-    <a href="#">About us</a>
-    <a href="#">Blog</a>
-    <a href="#">Contact</a>
-  </div>
-  <div class="nav-icons">
-    <div class="icon-btn" aria-label="Search">&#9906;</div>
-    <div class="icon-btn" aria-label="Account">&#128100;</div>
-    <div class="icon-btn" aria-label="Cart">&#128722;<span class="cart-count" id="cartCount">0</span></div>
-  </div>
-</nav> -->
 
   <?php include "header.php" ?>
 
@@ -202,6 +186,10 @@ if ($product_id > 0) {
   <?php include "footer.php" ?>
 
   <?php if ($product): ?>
+
+    <script src="assets/js/wishlist.js"></script>
+    <script src="assets/js/bag.js"></script>
+    <script src="assets/js/main.js"></script>
     <script>
       /* ---------- data from the database ---------- */
       const variantType = <?php echo json_encode($product['variant_type']); ?>; // 'none' | 'size' | 'shade' | 'color'
@@ -223,7 +211,7 @@ if ($product_id > 0) {
       <button class="gallery-thumb ${i === 0 ? 'active' : ''}" data-full="${src}">
         <img src="${src}" alt="thumbnail ${i + 1}">
       </button>
-    `).join('');
+      `).join('');
 
         thumbsEl.querySelectorAll('.gallery-thumb').forEach(thumb => {
           thumb.addEventListener('click', () => {
@@ -349,11 +337,9 @@ if ($product_id > 0) {
       });
 
       /* ---------- ADD TO CART ---------- */
-      const cartCount = document.getElementById('cartCount');
       addToCartBtn.addEventListener('click', () => {
-        if (addToCartBtn.disabled) return;
-        cartCount.textContent = parseInt(cartCount.textContent, 10) + qty;
-        // TODO: persist to cart_items for logged-in users — currently front-end only
+        if (addToCartBtn.disabled || !selectedVariant) return;
+        addToBag(selectedVariant.id, qty);
       });
     </script>
   <?php endif; ?>

@@ -252,6 +252,7 @@
 
   <script src="assets/js/wishlist.js"></script>
   <script src="assets/js/bag.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     /* ── Blog category filter (pills filter both reels and article cards) ── */
     const filterPills = document.querySelectorAll('#filterPills .pill');

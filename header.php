@@ -15,17 +15,17 @@ $current_page = basename($_SERVER['PHP_SELF']);
       <a href="contact.php" class="<?php echo $current_page === 'contact.php' ? 'active' : ''; ?>">Contact</a>
     </div>
     <div class="nav-icons">
-      <div class="icon-btn" aria-label="Search">
+      <button class="icon-btn" aria-label="Search" onclick="gotoSearch();">
         <i class="fa fa-search" aria-hidden="true"></i>
-      </div>
-      <div class="icon-btn" aria-label="Account">
+      </button>
+      <button class="icon-btn" aria-label="Account" onclick="gotoprofile();">
         <i class="fa fa-user" aria-hidden="true"></i>
-      </div>
+      </button>
       <button class="icon-btn" aria-label="Wishlist" data-wishlist-toggle>
-        <i class="fa fa-heart" aria-hidden="true"></i>
+        &#x1F496;
         <span class="wishlist-count">0</span></button>
       <button class="icon-btn" aria-label="Bag" data-bag-toggle>
-        <i class="fa fa-shopping-bag" aria-hidden="true"></i>
+        &#128093;
         <span class="bag-count">0</span></button>
     </div>
 </nav>

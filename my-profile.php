@@ -194,6 +194,9 @@
         <div>&copy; 2026 PiNK AURA. All product photos are placeholders.</div>
     </footer>
 
+    <script src="assets/js/wishlist.js"></script>
+    <script src="assets/js/bag.js"></script>
+    <script src="assets/js/main.js"></script>
     <script>
         /* ── Tab switching (Personal details / Shipping details) ── */
         const navLinks = document.querySelectorAll('.profile-nav-link[data-tab]');

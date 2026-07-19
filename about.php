@@ -191,7 +191,7 @@
 
   <script src="assets/js/wishlist.js"></script>
   <script src="assets/js/bag.js"></script>
-
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>

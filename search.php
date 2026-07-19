@@ -19,8 +19,8 @@ $products_rs = Database::search("
             LIMIT 1) AS image,
         IFNULL((SELECT ROUND(AVG(r.rating)) FROM reviews r WHERE r.product_id = p.product_id), 0) AS rating,
         (SELECT COUNT(*) FROM reviews r WHERE r.product_id = p.product_id) AS reviews,
-        (SELECT GROUP_CONCAT(CONCAT(pv2.label, '||', IFNULL(pv2.swatch_hex,'')) SEPARATOR ';;')
-            FROM product_variants pv2 WHERE pv2.product_id = p.product_id) AS variants_raw
+        (SELECT GROUP_CONCAT(CONCAT(pv2.variant_id, '::', pv2.label, '||', IFNULL(pv2.swatch_hex,'')) SEPARATOR ';;')
+    FROM product_variants pv2 WHERE pv2.product_id = p.product_id) AS variants_raw
     FROM products p
     JOIN subcategories s ON s.subcategory_id = p.subcategory_id
     JOIN categories c ON c.category_id = s.category_id
@@ -35,8 +35,9 @@ while ($row = $products_rs->fetch_assoc()) {
   $variants = [];
   if (!empty($row['variants_raw'])) {
     foreach (explode(';;', $row['variants_raw']) as $pair) {
-      [$label, $hex] = array_pad(explode('||', $pair, 2), 2, '');
-      $variants[] = ['label' => $label, 'hex' => $hex];
+      [$idAndLabel, $hex] = array_pad(explode('||', $pair, 2), 2, '');
+      [$vid, $label] = array_pad(explode('::', $idAndLabel, 2), 2, '');
+      $variants[] = ['id' => (int) $vid, 'label' => $label, 'hex' => $hex];
     }
   }
 
@@ -274,7 +275,7 @@ $categories = array_values($categoriesData); // re-index for a clean JS array
             ${p.variantType !== 'none' ? 'From ' : ''}Rs ${p.price.toLocaleString()}
             ${p.oldPrice ? `<span class="old">Rs ${p.oldPrice.toLocaleString()}</span>` : ''}
           </div>
-          <button class="prod-cart" aria-label="Add to cart"><i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
+          <button class="prod-cart" data-product-id="${p.id}" aria-label="Add to cart">&#128093;</button>
         </div>
       </div>
     </div>
@@ -340,6 +341,42 @@ $categories = array_values($categoriesData); // re-index for a clean JS array
 
       renderProducts(list);
     }
+
+    /* ---------- ADD TO CART (from product cards) ---------- */
+    const VARIANT_WORD = {
+      size: 'size',
+      shade: 'shade',
+      color: 'color'
+    };
+
+    function handleAddToCartClick(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      if (product.variantType !== 'none') {
+        const word = VARIANT_WORD[product.variantType] || 'option';
+        bagToast(`Please select a ${word} first.`, 'warning');
+        setTimeout(() => {
+          window.location.href = `product-view.php?id=${product.id}`;
+        }, 1100);
+        return;
+      }
+
+      const variant = product.variants[0];
+      if (!variant) {
+        bagToast('This product is unavailable right now.', 'error');
+        return;
+      }
+
+      addToBag(variant.id, 1);
+    }
+
+    prodGrid.addEventListener('click', (e) => {
+      const btn = e.target.closest('.prod-cart');
+      if (!btn) return;
+      e.preventDefault();
+      handleAddToCartClick(Number(btn.dataset.productId));
+    });
 
     /* ---------- SEARCH BAR ---------- */
     const searchInput = document.getElementById('searchInput');

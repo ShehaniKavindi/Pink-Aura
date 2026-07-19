@@ -165,6 +165,7 @@
 
   <script src="assets/js/wishlist.js"></script>
   <script src="assets/js/bag.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     const reasonSelect = document.getElementById('contactReason');
     const messageField = document.getElementById('contactMessage');

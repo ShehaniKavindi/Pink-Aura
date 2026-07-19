@@ -105,6 +105,7 @@ $categoriesJSON = json_encode($categories, JSON_UNESCAPED_SLASHES | JSON_UNESCAP
 
   <script src="assets/js/wishlist.js"></script>
   <script src="assets/js/bag.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     // categories now come straight from the database (see PHP block above)
     const categories = <?php echo $categoriesJSON; ?>;
